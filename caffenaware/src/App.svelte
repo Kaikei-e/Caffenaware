@@ -1,6 +1,11 @@
 <script>
-  let drinkCount = 1;
-  function countUp() {
+  $: drinkCount = 1;
+  $: isOverflowed = false;
+  function countUp(num) {
+    if (num > 10) {
+      isOverflowed = true;
+      return (drinkCount = 10);
+    }
     return drinkCount++;
   }
 </script>
@@ -8,11 +13,16 @@
 <main>
   <div class="bg-img">
     <div class="inputForm theOpacity">
-      <div class="countNum"> How many bottles did you drink? : {drinkCount} </div>
+      <div class="countNum">How many bottles did you drink? : {drinkCount}</div>
+      {#if isOverflowed}
+        <p class="maxWarning">You could calculate only 10 drinks at once! :)</p>
+      {/if}
       <form class="firstForm">
         <input type="number" maxlength="1" bind:value={drinkCount} />
       </form>
-      <button class="countUp" on:click={countUp}>  +1 drink :) </button>
+      <button class="countUp" on:click={countUp(drinkCount)}>
+        +1 drink :)
+      </button>
     </div>
   </div>
 </main>
@@ -36,13 +46,18 @@
     margin: 0px;
     border-radius: 20px;
   }
-	.countUp{
+  .countUp {
     border-radius: 20px;
     background-color: sienna;
-		color: antiquewhite;
-		font-weight: bold;
-		text-align: center;
-	}
+    color: antiquewhite;
+    font-weight: bold;
+    text-align: center;
+  }
+  .maxWarning {
+    color: teal;
+    font-size: 20px;
+    font-weight: bold;
+  }
 
   .theOpacity {
     padding: 20px;
