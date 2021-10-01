@@ -1,37 +1,38 @@
 <script>
-	let coffee = [{
-		path: "./imgs/coffe.jpg", id: coffee-bg\\ 
-	}] 
-	let bgImage = coffee.coffee.jj@;
+	let count = 0;
+	function countUp(){
+		return count++
+	}
 </script>
 
 <main>
-	<div class="bg-img" style="background-image: url('{bgImage}')">Caffenaware</div>
-	<h1>
-		coffee image
-	</h1>
+  <div class="bg-img">
+		<div class="countNum theOpacity">{count}</div>
+		<button on:click={countUp}>Press me!!</button>
+	</div>
 </main>
 
 <style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-	.bg-img{
-		width: max-content;
-		height: max-content;
+
+  .bg-img {
+		background-image: url("../imgs/coffee2.jpg");
 		background-size: cover;
+		width: 1980px;
+		height: 1200px;
+  }
+	.countNum{
+		color: crimson;
+		font-size: large;
 	}
 
-	h1{
-		color: rgb(236, 236, 236);	
+	.theOpacity{
+		background-color: rgb(143, 143, 143);
+    opacity: 0.8;
 	}
 
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
+  @media (min-width: 640px) {
+    main {
+      max-width: 4096px;
+    }
+  }
 </style>
