@@ -8,11 +8,11 @@
 <main>
   <div class="bg-img">
     <div class="inputForm theOpacity">
-      <div class="countNum">How many bottles did you drink? : {drinkCount}</div>
+      <div class="countNum"> How many bottles did you drink? : {drinkCount} </div>
       <form class="firstForm">
         <input type="number" maxlength="1" bind:value={drinkCount} />
       </form>
-      <button class="countUp" on:click={countUp}> +1 drink :)</button>
+      <button class="countUp" on:click={countUp}>  +1 drink :) </button>
     </div>
   </div>
 </main>
@@ -37,8 +37,11 @@
     border-radius: 20px;
   }
 	.countUp{
+    border-radius: 20px;
     background-color: sienna;
-
+		color: antiquewhite;
+		font-weight: bold;
+		text-align: center;
 	}
 
   .theOpacity {
