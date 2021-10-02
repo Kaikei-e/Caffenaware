@@ -1,6 +1,7 @@
 <script lang="ts">
-import { now } from "svelte/internal";
-import { numValidator } from "./validator/numVdalidator.js";
+  import { now } from "svelte/internal";
+  import { numValidator } from "./validator/numVdalidator.js";
+  import { nullChecker } from "./validator/nullChecker.js";
 
   import {
     selectTextOnFocus,
@@ -9,7 +10,15 @@ import { numValidator } from "./validator/numVdalidator.js";
 
   $: drinkCount = 1;
   $: isOverflowed = false;
-$: dateNow = Date.now()
+  $: dateNow = Date.now();
+
+  function realTimeNChecker(){
+    let nullChObj = nullChecker(drinkCount)
+
+    drinkCount = nullChObj.drinkNum;
+    isOverflowed = nullChObj.isOverflowed;
+  }
+
 
   function countUp(num) {
     if (num >= 10) {
@@ -21,7 +30,6 @@ $: dateNow = Date.now()
 
     return drinkCount++;
   }
-
 
   function onSubmit(e) {
     const formData = new FormData(e.target);
@@ -54,7 +62,7 @@ $: dateNow = Date.now()
           placeholder="Enter here !"
           bind:value={drinkCount}
           style="border-radius: 10px;"
-          on:keyup={nullChecker}
+          on:keyup={realTimeNChecker}
           on:blur={numValidator(drinkCount)}
           use:selectTextOnFocus
           use:blurOnEscape
@@ -72,7 +80,13 @@ $: dateNow = Date.now()
     <ul class="theOpacity">
       {#each Array(drinkCount) as _, i}
         <li class="drinkDetails">
-          {i + 1} : list test <input type="datetime-local" required bind:value={dateNow} style="border-radius: 10px;" />
+          {i + 1} : list test
+          <input
+            type="datetime-local"
+            required
+            bind:value={dateNow}
+            style="border-radius: 10px;"
+          />
         </li>
       {/each}
     </ul>
