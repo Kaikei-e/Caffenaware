@@ -1,12 +1,42 @@
-<script>
+<script lang="ts">
   $: drinkCount = 1;
   $: isOverflowed = false;
+  $: isValidated = true;
+
   function countUp(num) {
-    if (num > 10) {
+    if (num >= 10) {
       isOverflowed = true;
       return (drinkCount = 10);
+    }else{
+      isOverflowed = false;
     }
+
     return drinkCount++;
+  }
+
+  function numValidator() {
+    console.log("//////////////////////////////")
+    console.log(typeof drinkCount);
+    if (drinkCount >= 10) {
+      isOverflowed = true;
+      return (drinkCount = 10);
+    }else{
+      isOverflowed = false;
+    }
+
+    if(drinkCount === null || typeof drinkCount === "undefined"){
+      drinkCount = 1;
+    }
+
+    if(drinkCount <= 1){
+      drinkCount = 1
+    }
+
+    if (!isNaN(drinkCount)) {
+      return isValidated;
+    } else {
+      drinkCount = 1;
+    }
   }
 </script>
 
@@ -17,12 +47,23 @@
       {#if isOverflowed}
         <p class="maxWarning">You could calculate only 10 drinks at once! :)</p>
       {/if}
-      <form class="firstForm">
-        <input type="number" maxlength="1" bind:value={drinkCount} />
+      <form class="firstForm" on:submit={numValidator}>
+        <input
+          type="number"
+          required
+          placeholder="Enter here !"
+          bind:value={drinkCount}
+          style="border-radius: 10px;"
+          on:keypress={numValidator}
+          on:mouseleave={numValidator}
+          on:emptied={numValidator}
+        />
       </form>
-      <button class="countUp" on:click={countUp(drinkCount)}>
+      <button class="countUp" on:click={() => countUp(drinkCount)}>
         +1 drink :)
       </button>
+      <br />
+      <button type="submit" class="submit"> Submit!! </button>
     </div>
   </div>
 </main>
@@ -43,7 +84,7 @@
     text-align: center;
   }
   .firstForm {
-    margin: 0px;
+    margin: 10px;
     border-radius: 20px;
   }
   .countUp {
@@ -53,8 +94,16 @@
     font-weight: bold;
     text-align: center;
   }
+  .submit {
+    margin: 20px;
+    border-radius: 20px;
+    background-color: sienna;
+    color: antiquewhite;
+    font-weight: bold;
+    text-align: center;
+  }
   .maxWarning {
-    color: teal;
+    color: rgb(91, 124, 0);
     font-size: 20px;
     font-weight: bold;
   }
