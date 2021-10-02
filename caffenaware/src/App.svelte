@@ -1,7 +1,6 @@
 <script lang="ts">
   $: drinkCount = 1;
   $: isOverflowed = false;
-  $: isValidated = true;
 
   function countUp(num) {
     if (num >= 10) {
@@ -12,6 +11,14 @@
     }
 
     return drinkCount++;
+  }
+
+  function nullChecker(){
+    console.log(drinkCount);
+    if(drinkCount === null){
+      return drinkCount = 1
+    }
+
   }
 
   function numValidator() {
@@ -65,6 +72,7 @@
           placeholder="Enter here !"
           bind:value={drinkCount}
           style="border-radius: 10px;"
+          on:keyup={nullChecker}
           on:blur={numValidator}
         />
       </form>
