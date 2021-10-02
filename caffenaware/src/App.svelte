@@ -10,6 +10,7 @@
 
   $: drinkCount = 1;
   $: isOverflowed = false;
+  $: isUndered = false;
   $: dateNow = Date.now();
 
   function realTimeNChecker(){
@@ -17,6 +18,13 @@
 
     drinkCount = nullChObj.drinkNum;
     isOverflowed = nullChObj.isOverflowed;
+  }
+
+  function numVali(){
+    let validatedNum = numValidator(drinkCount);
+
+    drinkCount = validatedNum.drink;
+    isOverflowed = validatedNum.isOverflowed;
   }
 
 
@@ -29,6 +37,17 @@
     }
 
     return drinkCount++;
+  }
+
+  function countDown(num) {
+    if (num <= 1) {
+      isUndered = true;
+      return (drinkCount = 1);
+    } else {
+      isUndered = false;
+    }
+
+    return drinkCount -= 1;
   }
 
   function onSubmit(e) {
@@ -53,8 +72,11 @@
       <div class="countNum">How many bottles did you drink? : {drinkCount}</div>
       {#if isOverflowed}
         <p class="maxWarning">You could calculate only 10 drinks at once! :)</p>
+
+      {:else if isUndered}
+        <p class="maxWarning">The drink number must be greater than 0! :)</p>
       {/if}
-      <form class="firstForm" on:submit={numValidator(drinkCount)}>
+      <form class="firstForm" on:submit={numVali}>
         <label for="status">Number of drinks</label>
         <input
           type="number"
@@ -63,13 +85,16 @@
           bind:value={drinkCount}
           style="border-radius: 10px;"
           on:keyup={realTimeNChecker}
-          on:blur={numValidator(drinkCount)}
+          on:blur={numVali}
           use:selectTextOnFocus
           use:blurOnEscape
         />
       </form>
       <button class="countUp" on:click={() => countUp(drinkCount)}>
         +1 drink :)
+      </button>
+      <button class="countUp" on:click={() => countDown(drinkCount)}>
+        -1 drink :)
       </button>
       <br />
       <button type="submit" class="submit" on:click={onSubmit}>

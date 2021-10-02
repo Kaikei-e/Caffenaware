@@ -1,21 +1,35 @@
-
+class validatedNum {
+  drink: number;
+  isOverflowed : boolean
+}
 
 export function numValidator(drinkNum: number) {
     let isOverflowed = false;
-
+    let vNum = new validatedNum();
 
     if (drinkNum === null || typeof drinkNum === "undefined") {
-      return (drinkNum = 1, isOverflowed);
+      vNum.drink = (drinkNum = 1);
+      vNum.isOverflowed = isOverflowed;
+      
+      return vNum;
     }
 
     if (drinkNum >= 10) {
-      let isOverflowed = true;
-      return (drinkNum = 10, isOverflowed);
+      drinkNum = 10
+      isOverflowed = true;
+
+      vNum.drink = drinkNum;
+      vNum.isOverflowed = isOverflowed;
+
+      return vNum;
     } else {
       
     }
 
     if (drinkNum <= 0) {
-      return (drinkNum = 1, isOverflowed);
+      vNum.drink = 1;
+      vNum.isOverflowed = isOverflowed;
+
+      return vNum;
     }
   }
