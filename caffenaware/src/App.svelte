@@ -1,49 +1,27 @@
 <script lang="ts">
+import { now } from "svelte/internal";
+import { numValidator } from "./validator/numVdalidator.js";
+
+  import {
+    selectTextOnFocus,
+    blurOnEscape,
+  } from "../src/validator/inputDirectives.js";
+
   $: drinkCount = 1;
   $: isOverflowed = false;
+$: dateNow = Date.now()
 
   function countUp(num) {
     if (num >= 10) {
       isOverflowed = true;
       return (drinkCount = 10);
-    }else{
+    } else {
       isOverflowed = false;
     }
 
     return drinkCount++;
   }
 
-  function nullChecker(){
-    console.log(drinkCount);
-    if(drinkCount === null){
-      return drinkCount = 1
-    }
-
-  }
-
-  function numValidator() {
-    
-    if(drinkCount === null || typeof drinkCount === "undefined"){
-      console.log("................")
-      return drinkCount = 1;
-    }
-
-
-    if (drinkCount >= 10) {
-      isOverflowed = true;
-      return (drinkCount = 10);
-    }else{
-      isOverflowed = false;
-    }
-
-
-    if(drinkCount <= 0){
-      return drinkCount = 1
-    }
-
-
-
-  }
 
   function onSubmit(e) {
     const formData = new FormData(e.target);
@@ -53,7 +31,11 @@
       const [key, value] = field;
       data[key] = value;
     }
-    console.log(data)
+    console.log(data);
+  }
+
+  function generateDrinkList() {
+    drinkCount;
   }
 </script>
 
@@ -64,7 +46,7 @@
       {#if isOverflowed}
         <p class="maxWarning">You could calculate only 10 drinks at once! :)</p>
       {/if}
-      <form class="firstForm" on:submit={numValidator}>
+      <form class="firstForm" on:submit={numValidator(drinkCount)}>
         <label for="status">Number of drinks</label>
         <input
           type="number"
@@ -73,15 +55,27 @@
           bind:value={drinkCount}
           style="border-radius: 10px;"
           on:keyup={nullChecker}
-          on:blur={numValidator}
+          on:blur={numValidator(drinkCount)}
+          use:selectTextOnFocus
+          use:blurOnEscape
         />
       </form>
       <button class="countUp" on:click={() => countUp(drinkCount)}>
         +1 drink :)
       </button>
       <br />
-      <button type="submit" class="submit"> Submit!! </button>
+      <button type="submit" class="submit" on:click={onSubmit}>
+        Submit!!
+      </button>
     </div>
+
+    <ul class="theOpacity">
+      {#each Array(drinkCount) as _, i}
+        <li class="drinkDetails">
+          {i + 1} : list test <input type="datetime-local" required bind:value={dateNow} style="border-radius: 10px;" />
+        </li>
+      {/each}
+    </ul>
   </div>
 </main>
 
@@ -127,8 +121,19 @@
 
   .theOpacity {
     padding: 20px;
-    background-color: rgb(202, 202, 202);
-    opacity: 0.6;
+    background-color: rgb(202, 202, 202, 0.8);
+  }
+  .drinkDetails {
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(121, 52, 20);
+  }
+  ul {
+    display: grid;
+    grid-template-columns: auto;
+    justify-content: center;
+    list-style-position: inside;
+    padding: 0;
   }
 
   @media (min-width: 640px) {
