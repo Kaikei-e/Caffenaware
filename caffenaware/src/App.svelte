@@ -15,8 +15,13 @@
   }
 
   function numValidator() {
-    console.log("//////////////////////////////")
-    console.log(typeof drinkCount);
+    
+    if(drinkCount === null || typeof drinkCount === "undefined"){
+      console.log("................")
+      return drinkCount = 1;
+    }
+
+
     if (drinkCount >= 10) {
       isOverflowed = true;
       return (drinkCount = 10);
@@ -24,19 +29,24 @@
       isOverflowed = false;
     }
 
-    if(drinkCount === null || typeof drinkCount === "undefined"){
-      drinkCount = 1;
+
+    if(drinkCount <= 0){
+      return drinkCount = 1
     }
 
-    if(drinkCount <= 1){
-      drinkCount = 1
-    }
 
-    if (!isNaN(drinkCount)) {
-      return isValidated;
-    } else {
-      drinkCount = 1;
+
+  }
+
+  function onSubmit(e) {
+    const formData = new FormData(e.target);
+
+    const data = {};
+    for (let field of formData) {
+      const [key, value] = field;
+      data[key] = value;
     }
+    console.log(data)
   }
 </script>
 
@@ -48,15 +58,14 @@
         <p class="maxWarning">You could calculate only 10 drinks at once! :)</p>
       {/if}
       <form class="firstForm" on:submit={numValidator}>
+        <label for="status">Number of drinks</label>
         <input
           type="number"
           required
           placeholder="Enter here !"
           bind:value={drinkCount}
           style="border-radius: 10px;"
-          on:keypress={numValidator}
-          on:mouseleave={numValidator}
-          on:emptied={numValidator}
+          on:blur={numValidator}
         />
       </form>
       <button class="countUp" on:click={() => countUp(drinkCount)}>
