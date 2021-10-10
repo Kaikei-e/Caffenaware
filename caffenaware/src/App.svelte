@@ -2,6 +2,7 @@
   import { now } from "svelte/internal";
   import { numValidator } from "./validator/numVdalidator.js";
   import { nullChecker } from "./validator/nullChecker.js";
+  import { formGenerator } from "./formGenerator/formGenerator.js";
 
   import {
     selectTextOnFocus,
@@ -97,24 +98,25 @@
         -1 drink :)
       </button>
       <br />
-      <button type="submit" class="submit" on:click={onSubmit}>
-        Submit!!
-      </button>
     </div>
 
-    <ul class="theOpacity">
-      {#each Array(drinkCount) as _, i}
-        <li class="drinkDetails">
-          {i + 1} : list test
-          <input
-            type="datetime-local"
-            required
-            bind:value={dateNow}
-            style="border-radius: 10px;"
-          />
-        </li>
-      {/each}
-    </ul>
+    <form action="submit">
+      <ul class="theOpacity">
+        {#each Array(drinkCount) as _, i}
+          <li class="drinkDetails">
+            {i + 1} : list test
+            <input
+              id="drink{i}"
+              type="datetime-local"
+              required
+              bind:value={}
+              style="border-radius: 10px;"
+            />
+          </li>
+        {/each}
+        <input type="submit" class="submit">
+      </ul>
+    </form>
   </div>
 </main>
 
@@ -144,6 +146,7 @@
     font-weight: bold;
     text-align: center;
   }
+  
   .submit {
     margin: 20px;
     border-radius: 20px;
@@ -152,6 +155,7 @@
     font-weight: bold;
     text-align: center;
   }
+  
   .maxWarning {
     color: rgb(91, 124, 0);
     font-size: 20px;
