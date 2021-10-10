@@ -13,6 +13,7 @@
   $: isOverflowed = false;
   $: isUndered = false;
   $: dateNow = Date.now();
+  $: formArr = formGenerator(drinkCount);
 
   function realTimeNChecker(){
     let nullChObj = nullChecker(drinkCount)
@@ -65,6 +66,7 @@
   function generateDrinkList() {
     drinkCount;
   }
+
 </script>
 
 <main>
@@ -102,14 +104,13 @@
 
     <form action="submit">
       <ul class="theOpacity">
-        {#each Array(drinkCount) as _, i}
+        {#each formArr as name, i}
           <li class="drinkDetails">
             {i + 1} : list test
             <input
-              id="drink{i}"
+              id="{name}"
               type="datetime-local"
               required
-              bind:value={}
               style="border-radius: 10px;"
             />
           </li>
