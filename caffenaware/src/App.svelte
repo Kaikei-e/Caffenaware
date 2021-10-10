@@ -17,6 +17,7 @@
 
   let calMethod = "Method :";
   let caffeineMg = "Caffeine: ";
+  let formDescription = "Enter the methods, caffeine in mg and datetime."
 
   function realTimeNChecker() {
     let nullChObj = nullChecker(drinkCount);
@@ -102,11 +103,15 @@
       <br />
     </div>
 
+    <div class="formDiscription theOpacity">
+      <p>{formDescription}</p>
+    </div>
+
     <form action="submit">
       <ul class="theOpacity">
         {#each formArr as name, i}
           <li class="drinkDetails">
-            {i + 1} : list test
+            {i + 1} : {name}
             <!-- svelte-ignore a11y-label-has-associated-control -->
             <label>{calMethod}</label>
             <input
@@ -190,8 +195,15 @@
   }
 
   .theOpacity {
-    padding: 20px;
+    padding: 30px;
     background-color: rgb(202, 202, 202, 0.8);
+  }
+
+  .formDiscription{
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: rgb(121, 52, 20);
   }
   .drinkDetails {
     font-size: 20px;
