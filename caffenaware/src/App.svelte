@@ -15,20 +15,22 @@
   $: dateNow = Date.now();
   $: formArr = formGenerator(drinkCount);
 
-  function realTimeNChecker(){
-    let nullChObj = nullChecker(drinkCount)
+  let calMethod = "Method :";
+  let caffeineMg = "Caffeine: ";
+
+  function realTimeNChecker() {
+    let nullChObj = nullChecker(drinkCount);
 
     drinkCount = nullChObj.drinkNum;
     isOverflowed = nullChObj.isOverflowed;
   }
 
-  function numVali(){
+  function numVali() {
     let validatedNum = numValidator(drinkCount);
 
     drinkCount = validatedNum.drink;
     isOverflowed = validatedNum.isOverflowed;
   }
-
 
   function countUp(num) {
     if (num >= 10) {
@@ -49,7 +51,7 @@
       isUndered = false;
     }
 
-    return drinkCount -= 1;
+    return (drinkCount -= 1);
   }
 
   function onSubmit(e) {
@@ -66,7 +68,6 @@
   function generateDrinkList() {
     drinkCount;
   }
-
 </script>
 
 <main>
@@ -75,7 +76,6 @@
       <div class="countNum">How many bottles did you drink? : {drinkCount}</div>
       {#if isOverflowed}
         <p class="maxWarning">You could calculate only 10 drinks at once! :)</p>
-
       {:else if isUndered}
         <p class="maxWarning">The drink number must be greater than 0! :)</p>
       {/if}
@@ -107,15 +107,41 @@
         {#each formArr as name, i}
           <li class="drinkDetails">
             {i + 1} : list test
+            <!-- svelte-ignore a11y-label-has-associated-control -->
+            <label>{calMethod}</label>
             <input
-              id="{name}"
+              id="{name}-method"
+              type="number"
+              max="2"
+              min="1"
+              value="1"
+              required
+              use:selectTextOnFocus
+              use:blurOnEscape
+              style="border-radius: 10px;"
+            />
+            <!-- svelte-ignore a11y-label-has-associated-control -->
+            <label>{caffeineMg}</label>
+            <input
+              id="{name}-caffeine"
+              type="number"
+              value="1"
+              min="1"
+              max="1000"
+              required
+              use:selectTextOnFocus
+              use:blurOnEscape
+              style="border-radius: 10px;"
+            />
+            <input
+              id="{name}-time"
               type="datetime-local"
               required
               style="border-radius: 10px;"
             />
           </li>
         {/each}
-        <input type="submit" class="submit">
+        <input type="submit" class="submit" />
       </ul>
     </form>
   </div>
@@ -147,7 +173,7 @@
     font-weight: bold;
     text-align: center;
   }
-  
+
   .submit {
     margin: 20px;
     border-radius: 20px;
@@ -156,7 +182,7 @@
     font-weight: bold;
     text-align: center;
   }
-  
+
   .maxWarning {
     color: rgb(91, 124, 0);
     font-size: 20px;
@@ -171,6 +197,7 @@
     font-size: 20px;
     font-weight: 600;
     color: rgb(121, 52, 20);
+    display: inline-block;
   }
   ul {
     display: grid;
