@@ -1,7 +1,6 @@
 const config = {
 	mode: 'jit',
 	purge: ['./src/**/*.{html,js,svelte,ts}'],
-
 	theme: {
 		backgroundColor: theme => ({
 		 'primary': '#CEE5D0',
@@ -10,8 +9,6 @@ const config = {
 		 'danger': '#FF7878'
 		})
 	},
-
-
 	plugins: []
 };
 
