@@ -96,10 +96,10 @@ import { now } from "svelte/internal";
           use:blurOnEscape
         />
       </form>
-      <div class="flex flex-wrap justify-center items-baseline">
+      <div class="flex flex-wrap justify-center items-baseline text-gray-700">
 
-        <button class="countUp bg-secondary rounded-lg text-center px-4 py-2 m-5" on:click={() => countUp(drinkCount)}> +1 drink :) </button>
-        <button class="countUp bg-secondary rounded-lg text-center px-4 py-2 m-5" on:click={() => countDown(drinkCount)}> -1 drink :) 
+        <button class="countUp bg-primary rounded-lg text-center px-4 py-2 m-5" on:click={() => countUp(drinkCount)}> +1 drink :) </button>
+        <button class="countUp bg-primary rounded-lg text-center px-4 py-2 m-5" on:click={() => countDown(drinkCount)}> -1 drink :) 
         </button>
         
       </div><br />
@@ -110,7 +110,7 @@ import { now } from "svelte/internal";
 	<form action="submit" class="text-gray-100">
 		<ul>
 			{#each formArr as name, i}
-				<li class="drinkDetails">
+				<li class="drinkDetails m-3">
 					{i + 1} : list test
 					<!-- svelte-ignore a11y-label-has-associated-control -->
 					<label>{calMethod}</label>
@@ -123,7 +123,7 @@ import { now } from "svelte/internal";
 						required
 						use:selectTextOnFocus
 						use:blurOnEscape
-            class="text-gray-100 rounded-lg bg-secondary"
+            class="text-gray-700 rounded-lg bg-primary"
 					/>
 					<!-- svelte-ignore a11y-label-has-associated-control -->
 					<label>{caffeineMg}</label>
@@ -136,12 +136,13 @@ import { now } from "svelte/internal";
 						required
 						use:selectTextOnFocus
 						use:blurOnEscape
-            class="text-gray-100 rounded-lg bg-secondary"
+            class="text-gray-700 rounded-lg bg-primary"
 					/>
-					<input id="{name}-time" type="datetime-local" required class=" bg-secondary text-gray-100 rounded-lg" />
+          <label>Date time</label>
+					<input id="{name}-time" type="datetime-local" required class=" bg-primary border-white text-gray-700 rounded-lg" />
 				</li>
 			{/each}
-			<input type="submit" class="submit" />
+			<input type="submit" class="submit px-4 py-2 bg-primary border-white rounded-lg text-gray-700" value="Submit"/>
 		</ul>
 	</form>
 </main>
@@ -180,9 +181,6 @@ import { now } from "svelte/internal";
   }
 
   .submit {
-    margin: 20px;
-    border-radius: 20px;
-    color: antiquewhite;
     font-weight: bold;
     text-align: center;
   }
