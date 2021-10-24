@@ -75,32 +75,39 @@ import { now } from "svelte/internal";
 	<div class="backImage" />
 
 	<div class="inputForm">
-		<div class="countNum">How many bottles did you drink? : {drinkCount}</div>
-		{#if isOverflowed}
-			<p class="maxWarning">You could calculate only 10 drinks at once! :)</p>
-		{:else if isUndered}
-			<p class="maxWarning">The drink number must be greater than 0! :)</p>
-		{/if}
-		<form class="firstForm" on:submit={numVali}>
-			<label for="status">Number of drinks</label>
-			<input
-				type="number"
-				required
-				placeholder="Enter here !"
-				bind:value={drinkCount}
-				style="border-radius: 10px;"
-				on:keyup={realTimeNChecker}
-				on:blur={numVali}
-				use:selectTextOnFocus
-				use:blurOnEscape
-			/>
-		</form>
-		<button class="countUp" on:click={() => countUp(drinkCount)}> +1 drink :) </button>
-		<button class="countUp" on:click={() => countDown(drinkCount)}> -1 drink :) </button>
-		<br />
+    <div class=" flex flex-col justify-center">
+      <div class="countNum text-xl2 text-gray-100">How many bottles did you drink? : {drinkCount}</div>
+      {#if isOverflowed}
+        <p class="maxWarning">You could calculate only 10 drinks at once! :)</p>
+      {:else if isUndered}
+        <p class="maxWarning">The drink number must be greater than 0! :)</p>
+      {/if}
+      <form class="firstForm m-4 text-gray-100" on:submit={numVali}>
+        <label for="status" class="text-xl2 font-bold">Number of drinks</label>
+        <input
+          type="number"
+          required
+          class=" text-gray-700 rounded-md px-4 py-2"
+          placeholder="Enter here !"
+          bind:value={drinkCount}
+          on:keyup={realTimeNChecker}
+          on:blur={numVali}
+          use:selectTextOnFocus
+          use:blurOnEscape
+        />
+      </form>
+      <div class="flex flex-wrap justify-center items-baseline">
+
+        <button class="countUp bg-secondary rounded-lg text-center px-4 py-2 m-5" on:click={() => countUp(drinkCount)}> +1 drink :) </button>
+        <button class="countUp bg-secondary rounded-lg text-center px-4 py-2 m-5" on:click={() => countDown(drinkCount)}> -1 drink :) 
+        </button>
+        
+      </div><br />
+    </div>
+		
 	</div>
 
-	<form action="submit">
+	<form action="submit" class="text-gray-100">
 		<ul>
 			{#each formArr as name, i}
 				<li class="drinkDetails">
@@ -116,7 +123,7 @@ import { now } from "svelte/internal";
 						required
 						use:selectTextOnFocus
 						use:blurOnEscape
-						style="border-radius: 10px;"
+            class="text-gray-100 rounded-lg bg-secondary"
 					/>
 					<!-- svelte-ignore a11y-label-has-associated-control -->
 					<label>{caffeineMg}</label>
@@ -129,9 +136,9 @@ import { now } from "svelte/internal";
 						required
 						use:selectTextOnFocus
 						use:blurOnEscape
-						style="border-radius: 10px;"
+            class="text-gray-100 rounded-lg bg-secondary"
 					/>
-					<input id="{name}-time" type="datetime-local" required style="border-radius: 10px;" />
+					<input id="{name}-time" type="datetime-local" required class=" bg-secondary text-gray-100 rounded-lg" />
 				</li>
 			{/each}
 			<input type="submit" class="submit" />
@@ -159,7 +166,6 @@ import { now } from "svelte/internal";
 
   
   .countNum {
-    color: rgba(85, 52, 14, 0.8);
     font-size: 20px;
     font-weight: bold;
   }
@@ -167,21 +173,15 @@ import { now } from "svelte/internal";
     text-align: center;
   }
   .firstForm {
-    margin: 10px;
-    border-radius: 20px;
+    margin: 20px;
   }
   .countUp {
-    border-radius: 20px;
-    background-color: sienna;
-    color: antiquewhite;
     font-weight: bold;
-    text-align: center;
   }
 
   .submit {
     margin: 20px;
     border-radius: 20px;
-    background-color: sienna;
     color: antiquewhite;
     font-weight: bold;
     text-align: center;
@@ -196,7 +196,6 @@ import { now } from "svelte/internal";
   .drinkDetails {
     font-size: 20px;
     font-weight: 600;
-    color: rgb(121, 52, 20);
     display: inline-block;
   }
   ul {
