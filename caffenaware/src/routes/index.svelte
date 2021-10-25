@@ -83,7 +83,7 @@ import { now } from "svelte/internal";
         <p class="maxWarning">The drink number must be greater than 0! :)</p>
       {/if}
       <form class="firstForm m-4 text-gray-100" on:submit={numVali}>
-        <label for="status" class="text-xl2 font-bold">Number of drinks</label>
+        <label for="status" class=" text-xl font-bold">Number of drinks</label>
         <input
           type="number"
           required
@@ -111,7 +111,7 @@ import { now } from "svelte/internal";
 		<ul>
 			{#each formArr as name, i}
 				<li class="drinkDetails m-3">
-					{i + 1} : list test
+					{i + 1} : 
 					<!-- svelte-ignore a11y-label-has-associated-control -->
 					<label>{calMethod}</label>
 					<input
@@ -123,9 +123,8 @@ import { now } from "svelte/internal";
 						required
 						use:selectTextOnFocus
 						use:blurOnEscape
-            class="text-gray-700 rounded-lg bg-primary"
+            class="text-gray-700 rounded-lg bg-white"
 					/>
-					<!-- svelte-ignore a11y-label-has-associated-control -->
 					<label>{caffeineMg}</label>
 					<input
 						id="{name}-caffeine"
@@ -136,10 +135,11 @@ import { now } from "svelte/internal";
 						required
 						use:selectTextOnFocus
 						use:blurOnEscape
-            class="text-gray-700 rounded-lg bg-primary"
+            class="text-gray-700 rounded-lg bg-white"
 					/>
-          <label>Date time</label>
-					<input id="{name}-time" type="datetime-local" required class=" bg-primary border-white text-gray-700 rounded-lg" />
+          <label>mg, </label>
+          <label>Date time:</label>
+					<input id="{name}-time" type="datetime-local" required class=" bg-white border-white text-gray-700 rounded-lg" />
 				</li>
 			{/each}
 			<input type="submit" class="submit px-4 py-2 bg-primary border-white rounded-lg text-gray-700" value="Submit"/>

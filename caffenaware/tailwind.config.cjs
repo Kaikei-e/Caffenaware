@@ -6,7 +6,7 @@ const config = {
 		
 		backgroundColor: theme => ({
 			...theme('colors'),
-			'primary': '#BEF264',
+			'primary': '#84CC16',
 			'secondary': '#bd9e60',
 			'danger': '#e3342f',
 		 })
