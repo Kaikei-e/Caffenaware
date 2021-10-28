@@ -3,24 +3,19 @@
 import { now } from "svelte/internal";
   import { numValidator } from "$lib/validators/numValidator";
   import { nullChecker } from "$lib/validators/nullChecker";
-  import { formGenerator } from "$lib/forms/formGenerator";
-  import type { drinkFormHTML } from "$lib/forms/formTypes"
 
-  import {
-    selectTextOnFocus,
-    blurOnEscape,
-  } from "$lib/validators/inputDirective";
 import CountUpDown from "$lib/forms/CountUpDown.svelte";
 
-  $: drinkCount = 1;
+  let drinkCount = 1;
   let isOverflowed = false;
   let isUndered = false;
-  $: formArr = formGenerator(drinkCount);
+  let formArr;
 
-  let dForm: drinkFormHTML[];
+  let dForm;
 
-  let calMethod = "Method :";
-  let caffeineMg = "Caffeine: ";
+  
+
+
 
   function realTimeNChecker() {
     let nullChObj = nullChecker(drinkCount);
@@ -82,43 +77,13 @@ import CountUpDown from "$lib/forms/CountUpDown.svelte";
 		
 	</div>
 
+
+
 	<form action="submit" class="text-gray-100">
 		<ul>
-			{#each formArr as name, i}
-				<li class="drinkDetails m-3">
-					{i + 1} : 
-					<!-- svelte-ignore a11y-label-has-associated-control -->
-					<label>{calMethod}</label>
-          <select id="{name}-method"
-          value="1"
-          required
-          class="text-gray-700 rounded-lg bg-white"
-          bind:this="{dForm[i].method}"
-        >
-          <option value="1">Method1</option>
-          <option value="2">Method2</option>
-
-          </select>
-					<label>{caffeineMg}</label>
-					<input
-						id="{name}-caffeine"
-						type="number"
-						value="1"
-						min="1"
-						max="1000"
-						required
-						use:selectTextOnFocus
-						use:blurOnEscape
-            class="text-gray-700 rounded-lg bg-white"
-            bind:this="{dForm[i].caffeineMg}"
-					/>
-          <label>mg, </label>
-          <label>Date time:</label>
-					<input id="{name}-time" type="datetime-local" required class=" bg-white border-white text-gray-700 rounded-lg"
-          bind:this="{dForm[i].dttm}"
-          />
-				</li>
-			{/each}
+      {#if !dForm}
+        
+      {/if}
 			<input type="submit" class="submit px-4 py-2 bg-primary border-white rounded-lg text-gray-700" value="Submit"/>
 		</ul>
 	</form>
