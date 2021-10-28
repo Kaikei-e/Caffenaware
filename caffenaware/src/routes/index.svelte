@@ -1,9 +1,10 @@
-<script>
+<script lang="ts">
 
 import { now } from "svelte/internal";
   import { numValidator } from "$lib/validators/numValidator";
   import { nullChecker } from "$lib/validators/nullChecker";
   import { formGenerator } from "$lib/forms/formGenerator";
+  import type { drinkForm } from "$lib/forms/formTypes"
 
   import {
     selectTextOnFocus,
@@ -13,8 +14,9 @@ import { now } from "svelte/internal";
   $: drinkCount = 1;
   $: isOverflowed = false;
   $: isUndered = false;
-  $: dateNow = Date.now();
   $: formArr = formGenerator(drinkCount);
+
+  let dForm: drinkForm[];
 
   let calMethod = "Method :";
   let caffeineMg = "Caffeine: ";
@@ -114,17 +116,16 @@ import { now } from "svelte/internal";
 					{i + 1} : 
 					<!-- svelte-ignore a11y-label-has-associated-control -->
 					<label>{calMethod}</label>
-					<input
-						id="{name}-method"
-						type="number"
-						max="2"
-						min="1"
-						value="1"
-						required
-						use:selectTextOnFocus
-						use:blurOnEscape
-            class="text-gray-700 rounded-lg bg-white"
-					/>
+          <select id="{name}-method"
+          value="1"
+          required
+          class="text-gray-700 rounded-lg bg-white"
+          bind:this="{dForm[i].method}"
+        >
+          <option value="1">Method1</option>
+          <option value="2">Method2</option>
+
+          </select>
 					<label>{caffeineMg}</label>
 					<input
 						id="{name}-caffeine"
@@ -136,10 +137,13 @@ import { now } from "svelte/internal";
 						use:selectTextOnFocus
 						use:blurOnEscape
             class="text-gray-700 rounded-lg bg-white"
+            bind:this="{dForm[i].caffeineMg}"
 					/>
           <label>mg, </label>
           <label>Date time:</label>
-					<input id="{name}-time" type="datetime-local" required class=" bg-white border-white text-gray-700 rounded-lg" />
+					<input id="{name}-time" type="datetime-local" required class=" bg-white border-white text-gray-700 rounded-lg"
+          bind:this="{dForm[i].dttm}"
+          />
 				</li>
 			{/each}
 			<input type="submit" class="submit px-4 py-2 bg-primary border-white rounded-lg text-gray-700" value="Submit"/>
@@ -186,7 +190,7 @@ import { now } from "svelte/internal";
   }
 
   .maxWarning {
-    color: rgb(91, 124, 0);
+    color: rgb(59, 92, 10);
     font-size: 20px;
     font-weight: bold;
   }
