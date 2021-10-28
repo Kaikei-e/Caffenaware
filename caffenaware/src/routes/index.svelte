@@ -4,19 +4,20 @@ import { now } from "svelte/internal";
   import { numValidator } from "$lib/validators/numValidator";
   import { nullChecker } from "$lib/validators/nullChecker";
   import { formGenerator } from "$lib/forms/formGenerator";
-  import type { drinkForm } from "$lib/forms/formTypes"
+  import type { drinkFormHTML } from "$lib/forms/formTypes"
 
   import {
     selectTextOnFocus,
     blurOnEscape,
   } from "$lib/validators/inputDirective";
+import CountUpDown from "$lib/forms/CountUpDown.svelte";
 
   $: drinkCount = 1;
-  $: isOverflowed = false;
-  $: isUndered = false;
+  let isOverflowed = false;
+  let isUndered = false;
   $: formArr = formGenerator(drinkCount);
 
-  let dForm: drinkForm[];
+  let dForm: drinkFormHTML[];
 
   let calMethod = "Method :";
   let caffeineMg = "Caffeine: ";
@@ -33,28 +34,6 @@ import { now } from "svelte/internal";
 
     drinkCount = validatedNum.drink;
     isOverflowed = validatedNum.isOverflowed;
-  }
-
-  function countUp(num) {
-    if (num >= 10) {
-      isOverflowed = true;
-      return (drinkCount = 10);
-    } else {
-      isOverflowed = false;
-    }
-
-    return drinkCount++;
-  }
-
-  function countDown(num) {
-    if (num <= 1) {
-      isUndered = true;
-      return (drinkCount = 1);
-    } else {
-      isUndered = false;
-    }
-
-    return (drinkCount -= 1);
   }
 
   function onSubmit(e) {
@@ -98,13 +77,7 @@ import { now } from "svelte/internal";
           use:blurOnEscape
         />
       </form>
-      <div class="flex flex-wrap justify-center items-baseline text-gray-700">
-
-        <button class="countUp bg-primary rounded-lg text-center px-4 py-2 m-5" on:click={() => countUp(drinkCount)}> +1 drink :) </button>
-        <button class="countUp bg-primary rounded-lg text-center px-4 py-2 m-5" on:click={() => countDown(drinkCount)}> -1 drink :) 
-        </button>
-        
-      </div><br />
+      <CountUpDown drinkCount={drinkCount} />
     </div>
 		
 	</div>

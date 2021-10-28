@@ -1,5 +1,5 @@
 
-export type drinkForm = {
+export type drinkFormHTML = {
   No: number
   method: HTMLSelectElement
   caffeineMg : HTMLInputElement
