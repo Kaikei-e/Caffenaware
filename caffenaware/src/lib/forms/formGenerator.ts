@@ -12,24 +12,20 @@ export function formGenerator() {
 			return n;
 		});
 	} else {
-		for (let index = 0; index < drinkNum; index++) {
-			const theForm: drinkForm = {
-				No: index,
-				method: '1',
-				caffeineMg: 1,
-				dttm: new Date()
-			};
-
-			drinkForms.update((n) => {
-				n.push(theForm);
-				return n;
-			});
+		const theForm: drinkForm = {
+			No: drinkNum,
+			method: '1',
+			caffeineMg: 1,
+			dttm: new Date()
 		}
-
-		console.log(drinkForms);
-
-		return drinkForms;
+		drinkForms.update((n) => {
+			n.push(theForm as drinkForm);
+			return n
+		});
 	}
 
-	return;
+	console.log(drinkForms);
+
+	return drinkForms;
+
 }

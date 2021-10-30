@@ -28,22 +28,8 @@ const dForms : drinkForm[] = [];
 
 export const drinkForms = writable(dForms)
 
-drinkForms.update(n => n.push(initForm))
-
-
-
-
-
-
-/*
-export type drinkForm = {
-  No: number
-  method: theMethods
-  caffeineMg : number
-  dttm: Date
-}
-*/
-
+drinkForms.update(n => {n.push(initForm as drinkForm);
+return n})
 
 const methods = {
   "1" : "1",
