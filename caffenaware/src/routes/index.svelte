@@ -5,10 +5,9 @@
 
 	import CountUpDown from '$lib/forms/CountUpDown.svelte';
 	import DrinkDetails from '$lib/forms/DrinkDetails.svelte';
-	import { dForm } from '$lib/forms/formTypes';
 	import { formGenerator } from '$lib/forms/formGenerator';
 
-	$: dForms = formGenerator(drinkCount);
+	let dForms;
 
 	function realTimeNChecker() {
 		nullChecker();

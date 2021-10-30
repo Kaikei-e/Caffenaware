@@ -13,7 +13,7 @@
 
 		$drinkCount += 1;
 
-		return;
+		return formGenerator();
 	}
 
 	function countDown() {

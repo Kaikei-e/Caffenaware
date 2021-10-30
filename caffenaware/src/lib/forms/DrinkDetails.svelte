@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { selectTextOnFocus, blurOnEscape } from '$lib/validators/inputDirective';
-	import type { drinkForm } from './formTypes';
+	import { dForm } from './formTypes';
 
-	let calMethod = 'Method :';
+	let calMethod = 'Method: ';
 	let caffeineMg = 'Caffeine: ';
 
-	export let dForms: drinkForm[];
+	export let dForms = dForm;
 </script>
 
 {#each dForms as theForm (theForm.No)}
