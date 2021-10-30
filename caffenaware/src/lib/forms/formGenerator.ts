@@ -29,3 +29,12 @@ export function formGenerator() {
 	return drinkForms;
 
 }
+
+export function remover() {
+	const drinkNum = get(drinkCount);
+
+	drinkForms.update((n) => {
+		n.pop();
+		return n;
+	})
+}

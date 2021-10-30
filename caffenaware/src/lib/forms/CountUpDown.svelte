@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { drinkCount, isOverflowed, isUndered } from '$lib/store/store';
-	import { formGenerator } from './formGenerator';
+	import { formGenerator, remover } from './formGenerator';
 
 	function countUp() {
 		if ($drinkCount >= 10) {
@@ -24,7 +24,9 @@
 		} else {
 			$isUndered = false;
 		}
-		return ($drinkCount -= 1);
+		$drinkCount -= 1;
+
+		return remover();
 	}
 </script>
 

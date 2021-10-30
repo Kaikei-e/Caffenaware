@@ -17,7 +17,7 @@ export interface drinkFormHTML {
 
 
 export const initForm: drinkForm = {
-  No : 0,
+  No : 1,
   caffeineMg : 1,
   method : "1",
   dttm : new Date(),
