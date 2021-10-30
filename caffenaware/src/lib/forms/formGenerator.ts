@@ -1,6 +1,5 @@
 import { dForm, initForm } from './formTypes';
 import type { drinkForm } from "./formTypes";
-import { drinkCount } from "$lib/store/store";
 import { get } from "svelte/store";
 
 
