@@ -24,8 +24,6 @@
 		} else {
 			$isUndered = false;
 		}
-
-		formGenerator()
 		return ($drinkCount -= 1);
 	}
 </script>

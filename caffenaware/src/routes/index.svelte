@@ -5,11 +5,9 @@
 
 	import CountUpDown from '$lib/forms/CountUpDown.svelte';
 	import DrinkDetails from '$lib/forms/DrinkDetails.svelte';
-import NumValidator from '$lib/validators/NumValidator.svelte';
 
 
 	function realTimeNChecker() {
-		console.log(drinkCount);
 		nullChecker();
 	}
 
@@ -20,16 +18,14 @@ import NumValidator from '$lib/validators/NumValidator.svelte';
 		const formData = new FormData(e.target);
 
 		const data = {};
-		for (let field of formData) {
-			const [key, value] = field;
+
+		formData.forEach((value, key) => {
 			data[key] = value;
-		}
+		})
+
 		console.log(data);
 	}
 
-	function generateDrinkList() {
-		drinkCount;
-	}
 </script>
 
 <main>

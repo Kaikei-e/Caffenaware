@@ -3,6 +3,7 @@ import { get } from "svelte/store";
 
 export function nullChecker() {
 
+
   if (drinkCount === null) {
     drinkCount.update(n => n + 1)
     isOverflowed.set(false)
@@ -10,7 +11,7 @@ export function nullChecker() {
     return 
   }
 
-  const drinkNum =  get(drinkCount)
+  const drinkNum = get(drinkCount)
 
   if (drinkNum >= 10) {
     isOverflowed.set(true);

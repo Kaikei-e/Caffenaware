@@ -1,27 +1,20 @@
 <script lang="ts">
 	import { selectTextOnFocus, blurOnEscape } from '$lib/validators/inputDirective';
-	import { dForm } from "$lib/forms/formTypes";
+	import { dForm } from '$lib/forms/formTypes';
+	import { formGenerator } from './formGenerator';
 
-  
-  let calMethod = "Method :";
-  let caffeineMg = "Caffeine: ";
+	let calMethod = 'Method :';
+	let caffeineMg = 'Caffeine: ';
 
-
+	$: dForms = formGenerator();
 </script>
 
-{#each dForm as theForm, i}
+{#each dForms as theForm, i}
 	<li class="drinkDetails m-3">
 		{i + 1} :
 		<label>{calMethod}</label>
-		<select
-			id="{theForm.No}-method"
-			value="1"
-			required
-			class="text-gray-700 rounded-lg bg-white"
-			bind:this={theForm.method[1]}
-		>
-			<option value="1">Method1</option>
-			<option value="2">Method2</option>
+		<select id="{theForm.No}-method" value="1" required class="text-gray-700 rounded-lg bg-white">
+			<option value={theForm.method}>{theForm.method}</option>
 		</select>
 		<label>{caffeineMg}</label>
 		<input
@@ -34,7 +27,6 @@
 			use:selectTextOnFocus
 			use:blurOnEscape
 			class="text-gray-700 rounded-lg bg-white"
-			bind:this={theForm.caffeineMg}
 		/>
 		<label>mg, </label>
 		<label>Date time:</label>
@@ -43,7 +35,6 @@
 			type="datetime-local"
 			required
 			class=" bg-white border-white text-gray-700 rounded-lg"
-			bind:this={theForm.dttm}
 		/>
 	</li>
 {/each}
