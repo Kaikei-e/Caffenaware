@@ -5,9 +5,11 @@
 
 	import CountUpDown from '$lib/forms/CountUpDown.svelte';
 	import DrinkDetails from '$lib/forms/DrinkDetails.svelte';
-	import { formGenerator } from '$lib/forms/formGenerator';
+import { drinkForms } from '$lib/forms/formTypes';
+import { get } from 'svelte/store';
 
-	let dForms;
+
+	let dForms = get(drinkForms);
 
 	function realTimeNChecker() {
 		nullChecker();
@@ -60,8 +62,9 @@
 	</div>
 
 	<form action="submit" class="text-gray-100">
+		<p>{$drinkForms}</p>
 		<ul>
-			<DrinkDetails bind:dForms />
+			<DrinkDetails bind:dForms/>
 			<input
 				type="submit"
 				class="submit px-4 py-2 bg-primary border-white rounded-lg text-gray-700"

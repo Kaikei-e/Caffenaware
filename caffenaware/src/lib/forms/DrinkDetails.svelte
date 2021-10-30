@@ -1,16 +1,17 @@
 <script lang="ts">
 	import { selectTextOnFocus, blurOnEscape } from '$lib/validators/inputDirective';
-	import { dForm } from './formTypes';
+	import type { drinkForm } from "./formTypes";
+
 
 	let calMethod = 'Method: ';
 	let caffeineMg = 'Caffeine: ';
 
-	export let dForms = dForm;
+	export let dForms: drinkForm[];
 </script>
 
 {#each dForms as theForm (theForm.No)}
 	<li class="drinkDetails m-3">
-		{theForm.No + 1} :
+		{theForm.No + "1"} :
 		<label>{calMethod}</label>
 		<select id="{theForm.No}-method" value="1" required class="text-gray-700 rounded-lg bg-white">
 			<option value={theForm.method}>{theForm.method}</option>

@@ -1,10 +1,10 @@
 import { writable } from "svelte/store"
 
 export interface drinkForm {
-  No: number
-  method: theMethods
-  caffeineMg : number
-  dttm: Date
+  No: number | HTMLInputElement
+  method: theMethods 
+  caffeineMg : number | HTMLInputElement
+  dttm: Date | HTMLInputElement
 }
 
 
@@ -23,10 +23,12 @@ export const initForm: drinkForm = {
   dttm : new Date(),
 };
 
-export const dForm : drinkForm[] = [];
-writable(dForm)
+const dForms : drinkForm[] = [];
 
-dForm.push(initForm)
+
+export const drinkForms = writable(dForms)
+
+drinkForms.update(n => n.push(initForm))
 
 
 

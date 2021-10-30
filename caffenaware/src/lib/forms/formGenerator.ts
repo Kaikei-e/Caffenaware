@@ -1,4 +1,4 @@
-import { dForm, initForm } from './formTypes';
+import { drinkForms, initForm } from './formTypes';
 import type { drinkForm } from "./formTypes";
 import { get } from "svelte/store";
 import { drinkCount } from '$lib/store/store';
@@ -7,8 +7,8 @@ import { drinkCount } from '$lib/store/store';
 export function formGenerator() {
 	const drinkNum  = get(drinkCount)
 
-	if (dForm.length === 0) {
-		dForm.push(initForm);
+	if (drinkNum === 0) {
+		drinkForms.update(n => n.push(initForm));
 	} else {
 		for (let index = 0; index < drinkNum; index++) {
 		
@@ -19,13 +19,13 @@ export function formGenerator() {
 				dttm: new Date()
 			} 
 	
-			dForm.push(theForm)			
+			drinkForms.update(n => n.push(theForm))			
 		}
-			return dForm;
+			return drinkForms;
 	}	
 	
 
-	console.log(dForm)
+	console.log(drinkForms)
 
 	return;
 }
