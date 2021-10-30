@@ -16,14 +16,14 @@ import { get } from 'svelte/store';
 		let nullChObj = nullChecker(get(drinkCount));
 
 		drinkCount.update(n => nullChObj.drinkNum = n);
-		isOverflowed = nullChObj.isOverflowed;
+		$isOverflowed = nullChObj.isOverflowed;
 	}
 
 	function numVali() {
 		let validatedNum = numValidator(get(drinkCount));
 
 		drinkCount.update(n => validatedNum.drink = n);
-		isOverflowed = validatedNum.isOverflowed;
+		$isOverflowed = validatedNum.isOverflowed;
 	}
 
 	function onSubmit(e) {
@@ -48,11 +48,11 @@ import { get } from 'svelte/store';
 	<div class="inputForm">
 		<div class=" flex flex-col justify-center">
 			<div class="countNum text-xl2 text-gray-100">
-				How many bottles did you drink? : {drinkCount}
+				How many bottles did you drink? : {$drinkCount}
 			</div>
-			{#if isOverflowed}
+			{#if $isOverflowed}
 				<p class="maxWarning">You could calculate only 10 drinks at once! :)</p>
-			{:else if isUndered}
+			{:else if $isUndered}
 				<p class="maxWarning">The drink number must be greater than 0! :)</p>
 			{/if}
 			<form class="firstForm m-4 text-gray-100" on:submit={numVali}>
