@@ -20,7 +20,7 @@ export const initForm: drinkForm = {
   No : 0,
   caffeineMg : 1,
   method : 1,
-  dttm : new Date()
+  dttm : new Date(),
 };
 
 export const dForm : drinkForm[] = [];
