@@ -2,27 +2,25 @@
 	import { numValidator } from '$lib/validators/numValidator';
 	import { nullChecker } from '$lib/validators/nullChecker';
 	import { blurOnEscape, selectTextOnFocus } from '$lib/validators/inputDirective';
-	import { drinkCount, isOverflowed, isUndered } from "$lib/store/store";
+	import { drinkCount, isOverflowed, isUndered } from '$lib/store/store';
 
 	import CountUpDown from '$lib/forms/CountUpDown.svelte';
-import { get } from 'svelte/store';
-
-	let formArr;
+	import { get } from 'svelte/store';
+	import DrinkDetails from '$lib/forms/DrinkDetails.svelte';
 
 	let dForm;
 
 	function realTimeNChecker() {
-
 		let nullChObj = nullChecker(get(drinkCount));
 
-		drinkCount.update(n => nullChObj.drinkNum = n);
+		drinkCount.update((n) => (nullChObj.drinkNum = n));
 		$isOverflowed = nullChObj.isOverflowed;
 	}
 
 	function numVali() {
 		let validatedNum = numValidator(get(drinkCount));
 
-		drinkCount.update(n => validatedNum.drink = n);
+		drinkCount.update((n) => (validatedNum.drink = n));
 		$isOverflowed = validatedNum.isOverflowed;
 	}
 
@@ -75,7 +73,7 @@ import { get } from 'svelte/store';
 
 	<form action="submit" class="text-gray-100">
 		<ul>
-			{#if !dForm}{/if}
+			<DrinkDetails />
 			<input
 				type="submit"
 				class="submit px-4 py-2 bg-primary border-white rounded-lg text-gray-700"

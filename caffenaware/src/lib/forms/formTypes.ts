@@ -1,4 +1,6 @@
-export type drinkForm = {
+import { writable } from "svelte/store"
+
+export interface drinkForm {
   No: number
   method: theMethods
   caffeineMg : number
@@ -6,7 +8,7 @@ export type drinkForm = {
 }
 
 
-export type drinkFormHTML = {
+export interface drinkFormHTML {
   No: number
   method: HTMLSelectElement
   caffeineMg : HTMLInputElement
@@ -14,15 +16,21 @@ export type drinkFormHTML = {
 }
 
 
-let initForm: drinkFormHTML;
-initForm.No = 0;
-initForm.caffeineMg = HTMLInputElement.arguments(1);
-initForm.method = HTMLSelectElement.arguments(1);
-initForm.dttm = HTMLInputElement.arguments(Date.now())
+export const initForm: drinkForm = {
+  No : 0,
+  caffeineMg : 1,
+  method : 1,
+  dttm : new Date()
+};
 
-export let dForm: drinkFormHTML[];
+export const dForm : drinkForm[] = [];
+writable(dForm)
 
 dForm.push(initForm)
+
+
+
+
 
 
 /*

@@ -1,36 +1,32 @@
 <script lang="ts">
 	import { selectTextOnFocus, blurOnEscape } from '$lib/validators/inputDirective';
   import { formGenerator } from "$lib/forms/formGenerator";
-  import { dForm } from "$lib/forms/formTypes"
+	import { drinkCount } from "$lib/store/store"
+	import { dForm } from "$lib/forms/formTypes";
 
-  let dForm;
-  export let drinkCount = 1;
-
-  let formArr = formGenerator(drinkCount);
   
   let calMethod = "Method :";
   let caffeineMg = "Caffeine: ";
 
 </script>
 
-{#each formArr as name, i}
+{#each dForm as theForm, i}
 	<li class="drinkDetails m-3">
 		{i + 1} :
-		<!-- svelte-ignore a11y-label-has-associated-control -->
 		<label>{calMethod}</label>
 		<select
-			id="{name}-method"
+			id="{theForm.No}-method"
 			value="1"
 			required
 			class="text-gray-700 rounded-lg bg-white"
-			bind:this={dForm[i].method}
+			bind:this={theForm.method[1]}
 		>
 			<option value="1">Method1</option>
 			<option value="2">Method2</option>
 		</select>
 		<label>{caffeineMg}</label>
 		<input
-			id="{name}-caffeine"
+			id="{theForm.No}-caffeine"
 			type="number"
 			value="1"
 			min="1"
@@ -39,16 +35,16 @@
 			use:selectTextOnFocus
 			use:blurOnEscape
 			class="text-gray-700 rounded-lg bg-white"
-			bind:this={dForm[i].caffeineMg}
+			bind:this={theForm.caffeineMg}
 		/>
 		<label>mg, </label>
 		<label>Date time:</label>
 		<input
-			id="{name}-time"
+			id="{theForm.No}-time"
 			type="datetime-local"
 			required
 			class=" bg-white border-white text-gray-700 rounded-lg"
-			bind:this={dForm[i].dttm}
+			bind:this={theForm.dttm}
 		/>
 	</li>
 {/each}
