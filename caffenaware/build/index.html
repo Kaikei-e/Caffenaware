@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+		
+
+		
+
+		<link rel="modulepreload" href="/_app/start-bc35fbd2.js">
+		<link rel="modulepreload" href="/_app/chunks/vendor-f32fb803.js">
+		<link rel="modulepreload" href="/_app/pages/__layout.svelte-1932485e.js">
+		<link rel="modulepreload" href="/_app/pages/index.svelte-26a5095b.js">
+		<link rel="stylesheet" href="/_app/assets/start-464e9d0a.css">
+		<link rel="stylesheet" href="/_app/assets/pages/__layout.svelte-3a25bc19.css">
+		<link rel="stylesheet" href="/_app/assets/pages/index.svelte-c569376e.css">
+
+		<script type="module">
+			import { start } from "/_app/start-bc35fbd2.js";
+			start({
+				target: document.body,
+				paths: {"base":"","assets":""},
+				session: {},
+				host: location.host,
+				route: true,
+				spa: false,
+				trailing_slash: "never",
+				hydrate: {
+					status: 200,
+					error: null,
+					nodes: [
+						import("/_app/pages/__layout.svelte-1932485e.js"),
+						import("/_app/pages/index.svelte-26a5095b.js")
+					],
+					page: {
+						host: location.host, // TODO this is redundant
+						path: "\u002F",
+						query: new URLSearchParams(""),
+						params: {}
+					}
+				}
+			});
+		</script>
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<main class="svelte-40k0x3"><div class="backImage svelte-40k0x3"></div>
+
+	<div class="inputForm svelte-40k0x3"><div class="flex flex-col justify-center"><div class="countNum text-xl2 text-gray-100 svelte-40k0x3">How many bottles did you drink? : 1</div>
+			
+			<form class="firstForm m-4 text-gray-100 svelte-40k0x3"><label for="status" class="text-xl font-bold">Number of drinks</label>
+				<input type="number" required class="text-gray-700 rounded-md px-4 py-2" placeholder="Enter here !" value="1"></form>
+			<div><div class="flex flex-wrap justify-center items-baseline text-gray-700"><button class="countUp bg-primary rounded-lg text-center px-4 py-2 m-5 shadow-md svelte-1jwc1he">+1 drink :)
+		</button>
+		<button class="countUp bg-primary rounded-lg text-center px-4 py-2 m-5 shadow-md svelte-1jwc1he">-1 drink :)
+		</button></div>
+	<br>
+</div></div></div>
+
+	<form action="submit" class="text-gray-100"><p>[object Object]</p>
+		<ul class="svelte-40k0x3"><li class="drinkDetails m-3">0 :
+		<label>Method: </label>
+		<select id="0-method" value="1" required class="text-gray-700 rounded-lg bg-white"><option value="1">1</option></select>
+		<label>Caffeine: </label>
+		<input id="0-caffeine" type="number" value="1" min="1" max="1000" required class="text-gray-700 rounded-lg bg-white" this="1">
+		<label>mg, </label>
+		<label>Date time:</label>
+		<input id="0-time" type="datetime-local" required class="bg-white border-white text-gray-700 rounded-lg" this="Sun Oct 31 2021 06:07:18 GMT+0900 (Japan Standard Time)">
+	</li>
+			<input type="submit" class="submit px-4 py-2 bg-primary border-white rounded-lg text-gray-700 svelte-40k0x3" value="Submit"></ul></form>
+</main>
+
+
+
+			
+		</div>
+	</body>
+</html>

@@ -10,7 +10,7 @@ import { get } from 'svelte/store';
 
 	
 
-	let dForms = $drinkForms;
+	$: dForms = $drinkForms;
 
 	function realTimeNChecker() {
 		nullChecker();
@@ -63,7 +63,7 @@ import { get } from 'svelte/store';
 	</div>
 
 	<form action="submit" class="text-gray-100">
-		<p>{$drinkForms}</p>
+		<p>{dForms}</p>
 		<ul>
 			<DrinkDetails bind:dForms/>
 			<input
