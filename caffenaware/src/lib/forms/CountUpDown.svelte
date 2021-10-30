@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { drinkCount, isOverflowed, isUndered } from "$lib/store/store";
-	
-
+	import { drinkCount, isOverflowed, isUndered } from '$lib/store/store';
+	import { formGenerator } from './formGenerator';
 
 	function countUp() {
-		console.log("////////////////////////")
+
 		if ($drinkCount >= 10) {
 			$isOverflowed = true;
 			return ($drinkCount = 10);
@@ -12,10 +11,13 @@
 			$isOverflowed = false;
 		}
 
-		return $drinkCount += 1;
+		formGenerator();
+		return ($drinkCount += 1);
 	}
 
 	function countDown() {
+		console.log(drinkCount);
+
 		if ($drinkCount <= 1) {
 			$isUndered = true;
 			return ($drinkCount = 1);
@@ -23,7 +25,8 @@
 			$isUndered = false;
 		}
 
-		return $drinkCount -= 1
+		formGenerator()
+		return ($drinkCount -= 1);
 	}
 </script>
 
@@ -45,9 +48,8 @@
 	<br />
 </div>
 
-
 <style>
-.countUp {
-    font-weight: bold;
-  }
+	.countUp {
+		font-weight: bold;
+	}
 </style>

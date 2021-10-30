@@ -1,32 +1,25 @@
-class nullCheckedObj{
-  drinkNum: number;
-  isOverflowed: boolean;
-}
+import { drinkCount, isOverflowed } from "$lib/store/store";
+import { get } from "svelte/store";
 
-export function nullChecker(drinkNum: number) {
-  let isOverflowed = false;
-  const nullChObj = new nullCheckedObj();
+export function nullChecker() {
 
-  if (drinkNum === null) {
-    nullChObj.drinkNum = (drinkNum = 1);
-    nullChObj.isOverflowed = isOverflowed;
+  if (drinkCount === null) {
+    drinkCount.update(n => n + 1)
+    isOverflowed.set(false)
 
-    return nullChObj
+    return 
   }
 
+  const drinkNum =  get(drinkCount)
+
   if (drinkNum >= 10) {
-    isOverflowed = true;
-    nullChObj.drinkNum = (drinkNum = 10);
-    nullChObj.isOverflowed = isOverflowed;
-    return nullChObj;
+    isOverflowed.set(true);
+    drinkCount.set(10)
+    return;
   } else {
-    isOverflowed = false;
+    isOverflowed.set(false);
   }
 
   
-  // eslint-disable-next-line no-self-assign
-  nullChObj.drinkNum = (drinkNum = drinkNum)
-  nullChObj.isOverflowed = isOverflowed;
-
-  return nullChObj;
+  return;
 }

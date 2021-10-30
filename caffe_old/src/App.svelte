@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { now } from "svelte/internal";
   import { numValidator } from "./validator/numVdalidator.js";
   import { nullChecker } from "./validator/nullChecker.js";
   import { formGenerator } from "./formGenerator/formGenerator.js";
@@ -9,7 +8,6 @@
     blurOnEscape,
   } from "../src/validator/inputDirectives.js";
 
-  $: drinkCount = 1;
   $: isOverflowed = false;
   $: isUndered = false;
   $: dateNow = Date.now();

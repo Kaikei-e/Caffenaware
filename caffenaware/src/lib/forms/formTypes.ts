@@ -19,7 +19,7 @@ export interface drinkFormHTML {
 export const initForm: drinkForm = {
   No : 0,
   caffeineMg : 1,
-  method : 1,
+  method : "1",
   dttm : new Date(),
 };
 
@@ -44,8 +44,8 @@ export type drinkForm = {
 
 
 const methods = {
-  "1" : 1,
-  "2" : 2,
+  "1" : "1",
+  "2" : "2",
 } as const
 
 type theMethods = typeof methods[keyof typeof methods]

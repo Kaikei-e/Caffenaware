@@ -1,27 +1,19 @@
 <script lang="ts">
-	import { numValidator } from '$lib/validators/numValidator';
 	import { nullChecker } from '$lib/validators/nullChecker';
 	import { blurOnEscape, selectTextOnFocus } from '$lib/validators/inputDirective';
 	import { drinkCount, isOverflowed, isUndered } from '$lib/store/store';
 
 	import CountUpDown from '$lib/forms/CountUpDown.svelte';
-	import { get } from 'svelte/store';
 	import DrinkDetails from '$lib/forms/DrinkDetails.svelte';
+import NumValidator from '$lib/validators/NumValidator.svelte';
 
-	let dForm;
 
 	function realTimeNChecker() {
-		let nullChObj = nullChecker(get(drinkCount));
-
-		drinkCount.update((n) => (nullChObj.drinkNum = n));
-		$isOverflowed = nullChObj.isOverflowed;
+		console.log(drinkCount);
+		nullChecker();
 	}
 
 	function numVali() {
-		let validatedNum = numValidator(get(drinkCount));
-
-		drinkCount.update((n) => (validatedNum.drink = n));
-		$isOverflowed = validatedNum.isOverflowed;
 	}
 
 	function onSubmit(e) {

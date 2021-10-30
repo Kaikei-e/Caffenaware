@@ -1,12 +1,11 @@
 <script lang="ts">
 	import { selectTextOnFocus, blurOnEscape } from '$lib/validators/inputDirective';
-  import { formGenerator } from "$lib/forms/formGenerator";
-	import { drinkCount } from "$lib/store/store"
 	import { dForm } from "$lib/forms/formTypes";
 
   
   let calMethod = "Method :";
   let caffeineMg = "Caffeine: ";
+
 
 </script>
 
