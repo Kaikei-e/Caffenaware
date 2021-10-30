@@ -63,13 +63,13 @@ import { get } from 'svelte/store';
 	</div>
 
 	<form action="submit" class="text-gray-100">
-		<p>{dForms}</p>
 		<ul>
 			<DrinkDetails bind:dForms/>
 			<input
 				type="submit"
 				class="submit px-4 py-2 bg-primary border-white rounded-lg text-gray-700"
 				value="Submit"
+				on:submit="{onSubmit}"
 			/>
 		</ul>
 	</form>
