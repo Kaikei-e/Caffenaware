@@ -1,29 +1,28 @@
 <script lang="ts">
-	import { now } from 'svelte/internal';
 	import { numValidator } from '$lib/validators/numValidator';
 	import { nullChecker } from '$lib/validators/nullChecker';
+	import { blurOnEscape, selectTextOnFocus } from '$lib/validators/inputDirective';
+	import { drinkCount, isOverflowed, isUndered } from "$lib/store/store";
 
 	import CountUpDown from '$lib/forms/CountUpDown.svelte';
-	import { blurOnEscape, selectTextOnFocus } from '$lib/validators/inputDirective';
+import { get } from 'svelte/store';
 
-	let drinkCount = 1;
-	let isOverflowed = false;
-	let isUndered = false;
 	let formArr;
 
 	let dForm;
 
 	function realTimeNChecker() {
-		let nullChObj = nullChecker(drinkCount);
 
-		drinkCount = nullChObj.drinkNum;
+		let nullChObj = nullChecker(get(drinkCount));
+
+		drinkCount.update(n => nullChObj.drinkNum = n);
 		isOverflowed = nullChObj.isOverflowed;
 	}
 
 	function numVali() {
-		let validatedNum = numValidator(drinkCount);
+		let validatedNum = numValidator(get(drinkCount));
 
-		drinkCount = validatedNum.drink;
+		drinkCount.update(n => validatedNum.drink = n);
 		isOverflowed = validatedNum.isOverflowed;
 	}
 
@@ -63,14 +62,14 @@
 					required
 					class=" text-gray-700 rounded-md px-4 py-2"
 					placeholder="Enter here !"
-					bind:value={drinkCount}
+					bind:value={$drinkCount}
 					on:keyup={realTimeNChecker}
 					on:blur={numVali}
 					use:selectTextOnFocus
 					use:blurOnEscape
 				/>
 			</form>
-			<CountUpDown {drinkCount} />
+			<CountUpDown />
 		</div>
 	</div>
 

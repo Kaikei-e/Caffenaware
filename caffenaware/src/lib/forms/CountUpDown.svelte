@@ -1,28 +1,29 @@
 <script lang="ts">
-	export let isOverflowed = false;
-	export let isUndered = false;
-	export let drinkCount = 1;
+	import { drinkCount, isOverflowed, isUndered } from "$lib/store/store";
+	
+
 
 	function countUp(num) {
+		console.log("////////////////////////")
 		if (num >= 10) {
-			isOverflowed = true;
-			return (drinkCount = 10);
+			$isOverflowed = true;
+			return ($drinkCount = 10);
 		} else {
-			isOverflowed = false;
+			$isOverflowed = false;
 		}
 
-		return drinkCount++;
+		return drinkCount.update(n => n++)
 	}
 
 	function countDown(num) {
 		if (num <= 1) {
-			isUndered = true;
-			return (drinkCount = 1);
+			$isUndered = true;
+			return ($drinkCount = 1);
 		} else {
-			isUndered = false;
+			$isUndered = false;
 		}
 
-		return (drinkCount -= 1);
+		return drinkCount.update(n => n--)
 	}
 </script>
 
