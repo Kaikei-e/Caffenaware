@@ -2,7 +2,9 @@ import { drinkForms, initForm } from './formTypes';
 import type { drinkForm } from './formTypes';
 import { get } from 'svelte/store';
 import { drinkCount } from '$lib/store/store';
-import { onDestroy, tick } from "svelte/internal";
+import { tick } from "svelte/internal";
+
+
 
 export function formGenerator() {
 	const drinkNum = get(drinkCount);
@@ -17,7 +19,7 @@ export function formGenerator() {
 			No: drinkNum,
 			method: '1',
 			caffeineMg: 1,
-			dttm: new Date()
+			dttm: dateString
 		}
 		drinkForms.update((n) => {
 			n.push(theForm as drinkForm);
@@ -31,11 +33,13 @@ export function formGenerator() {
 
 }
 
-export async function remover() {
+export function remover() {
 
 	tick();
 
-	await drinkForms.update((n) => {
+	drinkForms.update((n) => {
+		console.log(nowS);
+		console.log(n.pop());
 		n.pop();
 		return n;
 	})

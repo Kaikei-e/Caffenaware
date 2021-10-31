@@ -30,6 +30,30 @@
 		method: '1',
 		dttm: new Date()
 	};
+
+	
+import { onMount } from 'svelte';
+	
+	// eslint-disable-next-line prefer-const
+	let now = new Date(), month, day, year, hour, minute;
+	let dateString1;
+	let dateString;
+	
+	onMount(()=> {
+        month = '' + (now.getMonth() + 1),
+        day = '' + now.getDate(),
+        year = now.getFullYear();
+				hour = now.getHours();
+				minute = now.getMinutes();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    dateString1 = [year, month, day].join('-');
+		dateString = dateString1 + "T" + hour + ":" + minute;
+	})
 </script>
 
 {#await loading()}
@@ -58,11 +82,11 @@
 			<label>mg, </label>
 			<label>Date time:</label>
 			<input
-				id="{theForm.No}-time"
+				id="{theForm.No}-time cal"
 				type="datetime-local"
 				required
 				class=" bg-white border-white text-gray-700 rounded-lg"
-				bind:this={theForm.dttm}
+				bind:this={dateString}
 			/>
 		</li>
 	{/each}
