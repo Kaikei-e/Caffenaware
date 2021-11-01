@@ -1,4 +1,4 @@
-package caffenaware
+package main
 
 import (
 	"github.com/gin-contrib/static"
@@ -8,9 +8,9 @@ import (
 func main(){
 	router := gin.Default()
 
-	router.Use(static.Serve("/", static.LocalFile("./caffenaware/public/build", false)))
-	router.Static("/_app", "./svelte/build/_app")
-	router.LoadHTMLGlob("./caffenaware/public/build/*.html")
+	router.Use(static.Serve("/", static.LocalFile("./caffenaware/build", false)))
+	router.Static("/_app", "./caffenaware/build/_app")
+	router.LoadHTMLGlob("./caffenaware/build/*.html")
 
 
 	router.Run(":9000")
