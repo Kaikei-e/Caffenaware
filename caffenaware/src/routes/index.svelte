@@ -5,11 +5,12 @@
 
 	import CountUpDown from '$lib/forms/CountUpDown.svelte';
 	import DrinkDetails from '$lib/forms/DrinkDetails.svelte';
-	import { drinkForms } from '$lib/forms/formTypes';
+	import { drinkForm, drinkForms } from '$lib/forms/formTypes';
 	import { get } from 'svelte/store';
-import { sendData } from '$lib/api/apiSender';
+	import { sendData } from '$lib/api/apiSender';
+	import type { Writable } from "svelte/store";
 
-	$: dForms = $drinkForms;
+	let dForms = $drinkForms;
 
 	function realTimeNChecker() {
 		nullChecker();
@@ -18,16 +19,18 @@ import { sendData } from '$lib/api/apiSender';
 	function numVali() {}
 
 	function onSubmit(e) {
-		const formData = new FormData(e.target);
+		//const formData = new FormData(e.target);
 
+		/*
 		const data = {};
 
 		formData.forEach((value, key) => {
 			data[key] = value;
 		});
-		
-		console.log(data);
-		//sendData(data);
+		*/
+
+		console.log(dForms);
+		sendData(dForms);
 	}
 </script>
 
@@ -62,14 +65,14 @@ import { sendData } from '$lib/api/apiSender';
 		</div>
 	</div>
 
-	<form  class="text-gray-100">
+	<form action="result" class="text-gray-100">
 		<ul>
 			<DrinkDetails bind:dForms />
 			<input
 				type="submit"
 				class="submit px-4 py-2 bg-primary border-white rounded-lg text-gray-700"
 				value="Submit"
-				on:click={onSubmit}
+				on:submit={onSubmit}
 			/>
 		</ul>
 	</form>

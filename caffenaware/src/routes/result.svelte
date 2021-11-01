@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { drinkForms } from '$lib/forms/formTypes';
+import { recievedData } from '$lib/api/apiSender';
+
 	import { get } from 'svelte/store';
 
-	$: dforms = get(drinkForms);
+	$: dforms = get(recievedData);
 </script>
 
 <div class="backImage" />
