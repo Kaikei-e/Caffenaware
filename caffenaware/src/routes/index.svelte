@@ -5,10 +5,9 @@
 
 	import CountUpDown from '$lib/forms/CountUpDown.svelte';
 	import DrinkDetails from '$lib/forms/DrinkDetails.svelte';
-import { drinkForms } from '$lib/forms/formTypes';
-import { get } from 'svelte/store';
-
-	
+	import { drinkForms } from '$lib/forms/formTypes';
+	import { get } from 'svelte/store';
+import { sendData } from '$lib/api/apiSender';
 
 	$: dForms = $drinkForms;
 
@@ -26,8 +25,9 @@ import { get } from 'svelte/store';
 		formData.forEach((value, key) => {
 			data[key] = value;
 		});
-
+		
 		console.log(data);
+		//sendData(data);
 	}
 </script>
 
@@ -62,14 +62,14 @@ import { get } from 'svelte/store';
 		</div>
 	</div>
 
-	<form action="result" class="text-gray-100">
+	<form  class="text-gray-100">
 		<ul>
-			<DrinkDetails bind:dForms/>
+			<DrinkDetails bind:dForms />
 			<input
 				type="submit"
 				class="submit px-4 py-2 bg-primary border-white rounded-lg text-gray-700"
 				value="Submit"
-				on:submit="{onSubmit}"
+				on:click={onSubmit}
 			/>
 		</ul>
 	</form>

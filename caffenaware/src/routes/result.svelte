@@ -1,14 +1,14 @@
 <script lang="ts">
-import { drinkForms } from "$lib/forms/formTypes";
-import { get } from "svelte/store";
+	import { drinkForms } from '$lib/forms/formTypes';
+	import { get } from 'svelte/store';
 
-$: dforms = get(drinkForms)
-
-
+	$: dforms = get(drinkForms);
 </script>
 
+<div class="backImage" />
+
 <div>
-  Hi !! {dforms}
+	Hi !! {dforms}
 </div>
 
 <style>
@@ -28,5 +28,4 @@ $: dforms = get(drinkForms)
 		background-blend-mode: lighten;
 		background-color: rgba(223, 188, 147, 0.3);
 	}
-
 </style>
