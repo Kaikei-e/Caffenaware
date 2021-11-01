@@ -3,6 +3,7 @@
 	import { selectTextOnFocus, blurOnEscape } from '$lib/validators/inputDirective';
 	import type { drinkForm } from './formTypes';
 	import { tick } from 'svelte/internal';
+	import dayjs from "dayjs";
 
 	let calMethod = 'Method: ';
 	let caffeineMg = 'Caffeine: ';
@@ -31,29 +32,7 @@
 		dttm: new Date()
 	};
 
-	
-import { onMount } from 'svelte';
-	
-	// eslint-disable-next-line prefer-const
-	let now = new Date(), month, day, year, hour, minute;
-	let dateString1;
-	let dateString;
-	
-	onMount(()=> {
-        month = '' + (now.getMonth() + 1),
-        day = '' + now.getDate(),
-        year = now.getFullYear();
-				hour = now.getHours();
-				minute = now.getMinutes();
 
-    if (month.length < 2) 
-        month = '0' + month;
-    if (day.length < 2) 
-        day = '0' + day;
-
-    dateString1 = [year, month, day].join('-');
-		dateString = dateString1 + "T" + hour + ":" + minute;
-	})
 </script>
 
 {#await loading()}
@@ -86,7 +65,7 @@ import { onMount } from 'svelte';
 				type="datetime-local"
 				required
 				class=" bg-white border-white text-gray-700 rounded-lg"
-				bind:this={dateString}
+				bind:this={theForm.dttm}
 			/>
 		</li>
 	{/each}
