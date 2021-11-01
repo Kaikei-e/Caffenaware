@@ -8,8 +8,9 @@
 	import { drinkForms } from '$lib/forms/formTypes';
 	import { sendData } from '$lib/api/apiSender';
 	import { get } from 'svelte/store';
+import { formGenerator } from '$lib/forms/formGenerator';
 
-	let dynamicForms = get(drinkForms);
+	let dynamicForms = drinkForms;
 
 	function realTimeNChecker() {
 		nullChecker();
@@ -51,20 +52,6 @@
 			{:else if $isUndered}
 				<p class="maxWarning">The drink number must be greater than 0! :)</p>
 			{/if}
-			<form class="firstForm m-4 text-gray-100" on:submit={numVali}>
-				<label for="status" class=" text-xl font-bold">Number of drinks</label>
-				<input
-					type="number"
-					required
-					class=" text-gray-700 rounded-md px-4 py-2"
-					placeholder="Enter here !"
-					bind:value={$drinkCount}
-					on:keyup={realTimeNChecker}
-					on:blur={numVali}
-					use:selectTextOnFocus
-					use:blurOnEscape
-				/>
-			</form>
 			<CountUpDown />
 		</div>
 	</div>
@@ -73,7 +60,7 @@
 			{#each $drinkForms as item}
 				{item}
 			{/each}
-			<DrinkDetails bind:dynamicForms />
+			<DrinkDetails bind:$dynamicForms/>
 			<input
 				type="submit"
 				class="submit px-4 py-2 bg-primary border-white rounded-lg text-gray-700"
@@ -112,6 +99,7 @@
 	}
 
 	.countNum {
+		margin: 20px;
 		font-size: 20px;
 		font-weight: bold;
 	}
