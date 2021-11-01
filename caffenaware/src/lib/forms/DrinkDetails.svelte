@@ -8,7 +8,7 @@
 	let calMethod = 'Method: ';
 	let caffeineMg = 'Caffeine: ';
 
-	export let dynamicForms:drinkForm[];
+	export let dynamicForms: drinkForm[];
 
 	$: isLoaded = false;
 
@@ -25,7 +25,6 @@
 
 		await tick();
 	}
-
 </script>
 
 {#await loading()}
@@ -41,8 +40,10 @@
 				value="1"
 				required
 				class="text-gray-700 rounded-lg bg-white"
+				bind:this={theForm.method}
 			>
-				<option value={theForm.method}>{theForm.method}</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
 			</select>
 			<label>{caffeineMg}</label>
 			<input

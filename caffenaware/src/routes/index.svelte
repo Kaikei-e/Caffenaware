@@ -9,8 +9,7 @@
 	import { sendData } from '$lib/api/apiSender';
 	import { get } from 'svelte/store';
 
-	let dynamicForms = $drinkForms;
-	dynamicForms = dynamicForms;
+	let dynamicForms = get(drinkForms);
 
 	function realTimeNChecker() {
 		nullChecker();
@@ -71,7 +70,7 @@
 	</div>
 	<form action="result" class="text-gray-100">
 		<ul>
-			{#each dynamicForms as item}
+			{#each $drinkForms as item}
 				{item}
 			{/each}
 			<DrinkDetails bind:dynamicForms />

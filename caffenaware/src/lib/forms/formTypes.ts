@@ -14,7 +14,7 @@ output(internal)
 
 export interface drinkForm {
   No: number | HTMLInputElement
-  method: theMethods 
+  method: theMethods | HTMLSelectElement
   caffeineMg : number | HTMLInputElement
   dttm: Date | HTMLInputElement
 }
