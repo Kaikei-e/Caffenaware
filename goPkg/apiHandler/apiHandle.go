@@ -2,6 +2,7 @@ package apihandler
 
 import (
 	"Caffenaware/goPkg/structs"
+	"fmt"
 	"log"
 
 	"github.com/gin-gonic/gin"
@@ -17,8 +18,10 @@ func APIReciever(ctx *gin.Context){
 		log.Panicln(err)
 	}
 
+	fmt.Println(frmDts)
+
 	ctx.JSON(200, frmDts)
 
-	
+
 
 }

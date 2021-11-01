@@ -20,11 +20,14 @@ output(internal)
 export function formGenerator() {
 	const drinkNum = get(drinkCount);
 
-	if (drinkNum === 0) {
+	if (drinkNum === 1) {
 		drinkForms.update((n) => {
 			n.push(initForm);
 			return n;
 		});
+
+		return drinkForms;
+
 	} else {
 		const theForm: drinkForm = {
 			No: drinkNum,
@@ -36,6 +39,7 @@ export function formGenerator() {
 			n.push(theForm as drinkForm);
 			return n
 		});
+
 	}
 
 	console.log(internal);

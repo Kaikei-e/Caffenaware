@@ -32,6 +32,12 @@
 		console.log(dForms);
 		sendData(dForms);
 	}
+
+	function postTest(){
+		
+		console.log(dForms);
+		sendData(dForms);
+	}
 </script>
 
 <main>
@@ -64,7 +70,6 @@
 			<CountUpDown />
 		</div>
 	</div>
-
 	<form action="result" class="text-gray-100">
 		<ul>
 			<DrinkDetails bind:dForms />
@@ -76,6 +81,17 @@
 			/>
 		</ul>
 	</form>
+
+	
+	<br>
+
+	<!---
+	<div>
+		<DrinkDetails bind:dForms/>
+		<button on:click="{postTest}">Test</button>
+	</div>
+	-->>
+	
 </main>
 
 <style>

@@ -9,6 +9,8 @@
 	let caffeineMg = 'Caffeine: ';
 	export let dForms: drinkForm[];
 
+	$: dynamicForms = dForms;
+
 	$: isLoaded = false;
 
 	async function loading() {
@@ -25,18 +27,12 @@
 		await tick();
 	}
 
-	const tForm: drinkForm = {
-		No: 1,
-		caffeineMg: 1,
-		method: '1',
-		dttm: new Date()
-	};
 </script>
 
 {#await loading()}
 	<div><p>Loading....</p></div>
 {:then}
-	{#each dForms as theForm (theForm.No)}
+	{#each dynamicForms as theForm (theForm.No)}
 		<li class="drinkDetails m-3">
 			{theForm.No} :
 			<label>{calMethod}</label>
