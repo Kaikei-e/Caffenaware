@@ -1,22 +1,21 @@
 <script lang="ts">
 	import { drinkCount } from '$lib/store/store';
 	import { selectTextOnFocus, blurOnEscape } from '$lib/validators/inputDirective';
-	import type { drinkForm } from './formTypes';
+	import { drinkForm, drinkForms } from './formTypes';
 	import { tick } from 'svelte/internal';
 	import type { Writable } from 'svelte/store';
 
 	let calMethod = 'Method: ';
 	let caffeineMg = 'Caffeine: ';
-	export let dForms: drinkForm[];
 
-	$: dynamicForms = dForms;
+	export let dynamicForms:drinkForm[];
 
 	$: isLoaded = false;
 
 	async function loading() {
 		isLoaded = false;
 
-		if (dForms.length === $drinkCount) {
+		if ($drinkForms.length === $drinkCount) {
 			isLoaded = true;
 		}
 

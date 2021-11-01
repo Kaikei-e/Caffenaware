@@ -5,12 +5,12 @@
 
 	import CountUpDown from '$lib/forms/CountUpDown.svelte';
 	import DrinkDetails from '$lib/forms/DrinkDetails.svelte';
-	import { drinkForm, drinkForms } from '$lib/forms/formTypes';
-	import { get } from 'svelte/store';
+	import { drinkForms } from '$lib/forms/formTypes';
 	import { sendData } from '$lib/api/apiSender';
-	import type { Writable } from "svelte/store";
+	import { get } from 'svelte/store';
 
-	let dForms = $drinkForms;
+	let dynamicForms = $drinkForms;
+	dynamicForms = dynamicForms;
 
 	function realTimeNChecker() {
 		nullChecker();
@@ -29,14 +29,13 @@
 		});
 		*/
 
-		console.log(dForms);
-		sendData(dForms);
+		console.log(get(drinkForms));
+		sendData($drinkForms);
 	}
 
-	function postTest(){
-		
-		console.log(dForms);
-		sendData(dForms);
+	function postTest() {
+		console.log(get(drinkForms));
+		sendData($drinkForms);
 	}
 </script>
 
@@ -72,7 +71,10 @@
 	</div>
 	<form action="result" class="text-gray-100">
 		<ul>
-			<DrinkDetails bind:dForms />
+			{#each dynamicForms as item}
+				{item}
+			{/each}
+			<DrinkDetails bind:dynamicForms />
 			<input
 				type="submit"
 				class="submit px-4 py-2 bg-primary border-white rounded-lg text-gray-700"
@@ -82,16 +84,14 @@
 		</ul>
 	</form>
 
-	
-	<br>
+	<br />
 
 	<!---
 	<div>
-		<DrinkDetails bind:dForms/>
+		<DrinkDetails bind:drinkForms/>
 		<button on:click="{postTest}">Test</button>
 	</div>
 	-->>
-	
 </main>
 
 <style>

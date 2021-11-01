@@ -29,6 +29,8 @@ export function formGenerator() {
 		return drinkForms;
 
 	} else {
+
+	
 		const theForm: drinkForm = {
 			No: drinkNum,
 			method: '1',
@@ -39,6 +41,7 @@ export function formGenerator() {
 			n.push(theForm as drinkForm);
 			return n
 		});
+
 
 	}
 
