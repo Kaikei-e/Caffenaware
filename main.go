@@ -8,9 +8,9 @@ import (
 func main(){
 	router := gin.Default()
 
-	router.Use(static.Serve("/", static.LocalFile("./caffenaware/build", false)))
-	router.Static("/_app", "./caffenaware/build/_app")
-	router.LoadHTMLGlob("./caffenaware/build/*.html")
+	router.Use(static.Serve("/", static.LocalFile("./sBuild", false)))
+	router.Static("/_app", "./sBuild/_app")
+	router.LoadHTMLGlob("./sBuild/*.html")
 
 
 	router.Run(":9000")

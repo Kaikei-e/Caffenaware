@@ -62,7 +62,7 @@ import { get } from 'svelte/store';
 		</div>
 	</div>
 
-	<form action="submit" class="text-gray-100">
+	<form action="result" class="text-gray-100">
 		<ul>
 			<DrinkDetails bind:dForms/>
 			<input
