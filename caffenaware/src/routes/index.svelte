@@ -6,8 +6,10 @@
 	import CountUpDown from '$lib/forms/CountUpDown.svelte';
 	import DrinkDetails from '$lib/forms/DrinkDetails.svelte';
 	import { drinkForms } from '$lib/forms/formTypes';
-	import { sendData } from '$lib/api/apiSender';
+	import { resData, sendData } from '$lib/api/apiSender';
 	import { get } from 'svelte/store';
+import dayjs from 'dayjs';
+import { goto } from '$app/navigation';
 
 	//let dynamicForms = drinkForms;
 
@@ -16,7 +18,7 @@
 	}
 
 
-	function onSubmit(e) {
+	async function onSubmit() {
 		//const formData = new FormData(e.target);
 
 		/*
@@ -27,8 +29,21 @@
 		});
 		*/
 
+		for (let index = 0; index < $drinkForms.length; index++) {
+			const elem = $drinkForms[index];
+			elem.dttm = dayjs(elem.dttm).format('YYYY-MM-DDTHH:mm:ssZ[Z]')
+
+		}
+
 		console.log(get(drinkForms));
-		sendData($drinkForms);
+		await sendData($drinkForms);
+
+		if ($resData){
+			goto("/result")
+
+		}else{
+			console.error("Bad request, try it again!")
+		}
 	}
 
 	function postTest() {
@@ -53,7 +68,7 @@
 			<CountUpDown />
 		</div>
 	</div>
-	<form action="result" class="text-gray-100">
+	<form class="text-gray-100">
 		<ul>
 			<DrinkDetails />
 			<input

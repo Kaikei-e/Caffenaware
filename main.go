@@ -14,6 +14,8 @@ func main(){
 	router.Static("/_app", "./sBuild/_app")
 	router.LoadHTMLGlob("./sBuild/*.html")
 
+	router.GET("/")
+
 	api := router.Group("/api")
 	{
 		api.POST("/calculate", apihandler.APIReciever)

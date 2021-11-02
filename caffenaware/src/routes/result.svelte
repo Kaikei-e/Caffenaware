@@ -1,15 +1,21 @@
 <script lang="ts">
-import { recievedData } from '$lib/api/apiSender';
-
+	import { resData } from '$lib/api/apiSender';
 	import { get } from 'svelte/store';
 
-	$: dforms = get(recievedData);
+	const resJson = get(resData);
+	let dForms = get(resData);
+
+
 </script>
 
 <div class="backImage" />
 
 <div>
-	Hi !! {dforms}
+	{#each dForms as formData, index}
+		<p>{formData[index].method}</p>
+		<p>{formData[index].caffeine}</p>
+		<p>{formData[index].dttm}</p>
+	{/each}
 </div>
 
 <style>
