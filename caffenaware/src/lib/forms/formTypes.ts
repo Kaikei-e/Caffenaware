@@ -16,7 +16,7 @@ export interface drinkForm {
   No: number
   method: theMethods 
   caffeineMg : number
-  dttm: Date
+  dttm: string
 }
 
 

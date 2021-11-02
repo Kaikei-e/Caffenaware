@@ -8,11 +8,11 @@
 
 	let calMethod = 'Method: ';
 	let caffeineMg = 'Caffeine: ';
-
 </script>
 
 <div>
-	<p>{theForm.No} :<p>
+	<li>
+		{theForm.No} :
 
 		<label>{calMethod}</label>
 		<select
@@ -25,31 +25,31 @@
 			<option value="1">1</option>
 			<option value="2">2</option>
 		</select>
-	<label>{caffeineMg}</label>
-	<input
-		id="{theForm.No}-caffeine"
-		name="caffeine"
-		type="number"
-		min="1"
-		max="1000"
-		required
-		use:selectTextOnFocus
-		use:blurOnEscape
-		class="text-gray-700 rounded-lg bg-white"
-		bind:value={theForm.caffeineMg}
-	/>
-	<label>mg, </label>
-	<label>Date time:</label>
-	<input
-		id="{theForm.No}-time"
-		name="datetime"
-		type="datetime-local"
-		required
-		class=" bg-white border-white text-gray-700 rounded-lg"
-		bind:value={theForm.dttm}
-	/>
+		<label>{caffeineMg}</label>
+		<input
+			id="{theForm.No}-caffeine"
+			name="caffeine"
+			type="number"
+			min="1"
+			max="1000"
+			required
+			use:selectTextOnFocus
+			use:blurOnEscape
+			class="text-gray-700 rounded-lg bg-white"
+			bind:value={theForm.caffeineMg}
+		/>
+		<label>mg, </label>
+		<label>Date time:</label>
+		<input
+			id="{theForm.No}-time"
+			name="datetime"
+			type="datetime-local"
+			required
+			class=" bg-white border-white text-gray-700 rounded-lg"
+			bind:value={theForm.dttm}
+		/>
+	</li>
 </div>
-	
 
 <style>
 	.drinkDetails {

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { drinkCount } from '$lib/store/store';
-	import { selectTextOnFocus, blurOnEscape } from '$lib/validators/inputDirective';
 	import { drinkForm, drinkForms } from './formTypes';
 	import { tick } from 'svelte/internal';
 	import TheForm from './TheForm.svelte';
@@ -10,7 +9,7 @@
 
 	//export let dynamicForms: drinkForm[];
 	$: isLoaded = false;
-		
+
 	async function loading() {
 		isLoaded = false;
 
@@ -29,9 +28,11 @@
 {#await loading()}
 	<div><p>Loading....</p></div>
 {:then}
+	<ul>
 		{#each $drinkForms as theForm, index}
 			<TheForm bind:$drinkForms {theForm} {index} />
 		{/each}
+	</ul>
 {/await}
 
 <style>
