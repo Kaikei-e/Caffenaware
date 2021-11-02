@@ -1,26 +1,34 @@
 <script lang="ts">
 	import type { drinkForm } from './formTypes';
+	import { selectTextOnFocus, blurOnEscape } from '$lib/validators/inputDirective';
 
-	export let theForm: drinkForm;
+	export let drinkForms;
+	export let index;
+	export let theForm;
 
 	let calMethod = 'Method: ';
 	let caffeineMg = 'Caffeine: ';
+	let method = theForm.method; 
+
 </script>
 
-<li id={theForm.No.toString()}>
+<div class:Form>
 	{theForm.No} :
-	<label>{calMethod}</label>
-	<select
-		id={theForm.No.toString()}
-		name="method"
-		value="1"
-		required
-		class="text-gray-700 rounded-lg bg-white"
-		bind:this={theForm.method}
-	>
-		<option value="1">1</option>
-		<option value="2">2</option>
-	</select>
+	<div>
+
+		<label>{calMethod}</label>
+		<select
+			id={theForm.No.toString()}
+			name="method"
+			value="1"
+			required
+			class="text-gray-700 rounded-lg bg-white"
+			bind:value={method}
+		>
+			<option value="1">1</option>
+			<option value="2">2</option>
+		</select>
+	</div>
 	<label>{caffeineMg}</label>
 	<input
 		id="{theForm.No}-caffeine"
@@ -33,7 +41,7 @@
 		use:selectTextOnFocus
 		use:blurOnEscape
 		class="text-gray-700 rounded-lg bg-white"
-		bind:this={theForm.caffeineMg}
+		bind:value={theForm.caffeineMg}
 	/>
 	<label>mg, </label>
 	<label>Date time:</label>
@@ -43,9 +51,10 @@
 		type="datetime-local"
 		required
 		class=" bg-white border-white text-gray-700 rounded-lg"
-		bind:this={theForm.dttm}
+		bind:value={theForm.dttm}
 	/>
-</li>
+</div>
+	
 
 <style>
 	.drinkDetails {

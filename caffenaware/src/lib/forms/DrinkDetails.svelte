@@ -3,16 +3,14 @@
 	import { selectTextOnFocus, blurOnEscape } from '$lib/validators/inputDirective';
 	import { drinkForm, drinkForms } from './formTypes';
 	import { tick } from 'svelte/internal';
-	import type { Writable } from 'svelte/store';
-import TheForm from './TheForm.svelte';
+	import TheForm from './TheForm.svelte';
 
 	let calMethod = 'Method: ';
 	let caffeineMg = 'Caffeine: ';
 
 	//export let dynamicForms: drinkForm[];
-
 	$: isLoaded = false;
-
+		
 	async function loading() {
 		isLoaded = false;
 
@@ -32,8 +30,8 @@ import TheForm from './TheForm.svelte';
 	<div><p>Loading....</p></div>
 {:then}
 	<ul>
-		{#each $drinkForms as theForm }
-		<TheForm bind:theForm/>
+		{#each $drinkForms as theForm, index}
+			<TheForm bind:$drinkForms {theForm} {index} />
 		{/each}
 	</ul>
 {/await}
@@ -52,7 +50,7 @@ import TheForm from './TheForm.svelte';
 		padding: 0;
 	}
 
-	li{
+	li {
 		margin: 10px;
 	}
 </style>
