@@ -8,15 +8,13 @@
 	import { drinkForms } from '$lib/forms/formTypes';
 	import { sendData } from '$lib/api/apiSender';
 	import { get } from 'svelte/store';
-import { formGenerator } from '$lib/forms/formGenerator';
 
-	let dynamicForms = drinkForms;
+	//let dynamicForms = drinkForms;
 
 	function realTimeNChecker() {
 		nullChecker();
 	}
 
-	function numVali() {}
 
 	function onSubmit(e) {
 		//const formData = new FormData(e.target);
@@ -58,9 +56,9 @@ import { formGenerator } from '$lib/forms/formGenerator';
 	<form action="result" class="text-gray-100">
 		<ul>
 			{#each $drinkForms as item}
-				{item}
+				{item.dttm}
 			{/each}
-			<DrinkDetails bind:$dynamicForms/>
+			<DrinkDetails />
 			<input
 				type="submit"
 				class="submit px-4 py-2 bg-primary border-white rounded-lg text-gray-700"
@@ -106,10 +104,6 @@ import { formGenerator } from '$lib/forms/formGenerator';
 	.inputForm {
 		text-align: center;
 	}
-	.firstForm {
-		margin: 20px;
-	}
-
 	.submit {
 		font-weight: bold;
 		text-align: center;

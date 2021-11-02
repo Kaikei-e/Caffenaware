@@ -51,14 +51,3 @@ export function formGenerator() {
 	return drinkForms;
 
 }
-
-export function remover() {
-
-	tick();
-
-	drinkForms.update((n) => {
-		console.log(n.pop());
-		n.pop();
-		return n;
-	})
-}

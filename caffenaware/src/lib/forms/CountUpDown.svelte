@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { drinkCount, isOverflowed, isUndered } from '$lib/store/store';
-	import { formGenerator, remover } from './formGenerator';
+	import { formGenerator } from './formGenerator';
+import { drinkForms } from './formTypes';
 	
 
 	function countUp() {
@@ -28,6 +29,13 @@
 		$drinkCount -= 1;
 
 		return remover();
+	}
+
+	function remover(){
+		drinkForms.update(n => {
+			n.pop()
+			return n
+		})
 	}
 </script>
 
