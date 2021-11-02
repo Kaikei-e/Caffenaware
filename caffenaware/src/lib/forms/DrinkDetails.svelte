@@ -29,11 +29,9 @@
 {#await loading()}
 	<div><p>Loading....</p></div>
 {:then}
-	<ul>
 		{#each $drinkForms as theForm, index}
 			<TheForm bind:$drinkForms {theForm} {index} />
 		{/each}
-	</ul>
 {/await}
 
 <style>

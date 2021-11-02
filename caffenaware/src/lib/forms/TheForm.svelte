@@ -2,19 +2,17 @@
 	import type { drinkForm } from './formTypes';
 	import { selectTextOnFocus, blurOnEscape } from '$lib/validators/inputDirective';
 
-	export let drinkForms;
+	export let drinkForms: drinkForm[];
 	export let index;
-	export let theForm;
+	export let theForm: drinkForm;
 
 	let calMethod = 'Method: ';
 	let caffeineMg = 'Caffeine: ';
-	let method = theForm.method; 
 
 </script>
 
 <div class:Form>
-	{theForm.No} :
-	<div>
+	<p>{theForm.No} :<p>
 
 		<label>{calMethod}</label>
 		<select
@@ -23,7 +21,7 @@
 			value="1"
 			required
 			class="text-gray-700 rounded-lg bg-white"
-			bind:value={method}
+			bind:value={theForm.method}
 		>
 			<option value="1">1</option>
 			<option value="2">2</option>
