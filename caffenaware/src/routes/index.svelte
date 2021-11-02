@@ -55,9 +55,6 @@
 	</div>
 	<form action="result" class="text-gray-100">
 		<ul>
-			{#each $drinkForms as item}
-				{item.dttm}
-			{/each}
 			<DrinkDetails />
 			<input
 				type="submit"
@@ -72,10 +69,11 @@
 
 	<!---
 	<div>
-		<DrinkDetails bind:drinkForms/>
+		<DrinkDetails />
 		<button on:click="{postTest}">Test</button>
-	</div>
-	-->>
+	</div>	
+		--->
+	
 </main>
 
 <style>

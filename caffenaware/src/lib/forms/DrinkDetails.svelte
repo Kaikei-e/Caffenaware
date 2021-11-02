@@ -1,11 +1,9 @@
 <script lang="ts">
 	import { drinkCount } from '$lib/store/store';
-	import { drinkForm, drinkForms } from './formTypes';
+	import { drinkForms } from './formTypes';
 	import { tick } from 'svelte/internal';
 	import TheForm from './TheForm.svelte';
 
-	let calMethod = 'Method: ';
-	let caffeineMg = 'Caffeine: ';
 
 	//export let dynamicForms: drinkForm[];
 	$: isLoaded = false;
