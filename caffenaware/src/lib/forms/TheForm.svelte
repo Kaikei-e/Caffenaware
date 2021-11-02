@@ -11,14 +11,13 @@
 
 </script>
 
-<div class:Form>
+<div>
 	<p>{theForm.No} :<p>
 
 		<label>{calMethod}</label>
 		<select
 			id={theForm.No.toString()}
 			name="method"
-			value="1"
 			required
 			class="text-gray-700 rounded-lg bg-white"
 			bind:value={theForm.method}
@@ -26,13 +25,11 @@
 			<option value="1">1</option>
 			<option value="2">2</option>
 		</select>
-	</div>
 	<label>{caffeineMg}</label>
 	<input
 		id="{theForm.No}-caffeine"
 		name="caffeine"
 		type="number"
-		value="1"
 		min="1"
 		max="1000"
 		required
@@ -44,7 +41,7 @@
 	<label>mg, </label>
 	<label>Date time:</label>
 	<input
-		id="{theForm.No}-time cal"
+		id="{theForm.No}-time"
 		name="datetime"
 		type="datetime-local"
 		required
