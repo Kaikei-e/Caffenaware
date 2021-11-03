@@ -63,6 +63,6 @@ func APIReciever(ctx *gin.Context){
 	}
 
 
-	ctx.JSON(200, frmDts)
+	ctx.JSON(200, summedList)
 
 }

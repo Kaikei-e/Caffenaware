@@ -22,10 +22,8 @@ export interface drinkForm {
 }
 
 export type drinkFormRes = {
-  method: theMethods
   caffeine : number
   dttm: string
-  drinkMl: number
 }
 
 

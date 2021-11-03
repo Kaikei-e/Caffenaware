@@ -20,9 +20,7 @@
 			elem.dttm = dayjs(elem.dttm).format('YYYY-MM-DDTHH:mm:ssZ');
 		}
 
-		console.log(get(drinkForms));
 		await sendData($drinkForms);
-		console.log('///////////////////////////');
 
 		if ($resStruct) {
 			await goto('/result');

@@ -10,8 +10,8 @@ type FormData struct{
 }
 
 type TheDecay struct{
-	Timeline time.Time
-	CaffeineTransition float64
+	Timeline time.Time `json:"dttm"`
+	CaffeineTransition float64 `json:"caffeine"`
 
 }
 

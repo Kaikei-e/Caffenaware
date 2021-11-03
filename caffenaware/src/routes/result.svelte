@@ -3,37 +3,31 @@
 	import type { drinkFormRes } from '$lib/forms/formTypes';
 	import { get } from 'svelte/store';
 
-	//const resJson = get(resStruct););
-	console.log(get(resStruct).res);
 	let jsonObjs = get(resStruct).res;
 	let drinks: Array<drinkFormRes> = [];
 
 	for (let index = 0; index < jsonObjs.length; index++) {
 		const element = jsonObjs[index];
 
-		console.log(element);
 
 		let dStruct: drinkFormRes = {
-			method: element["method"],
 			caffeine: element["caffeine"],
 			dttm: element["dttm"],
-			drinkMl: element["drinkMl"]
 		}
-		console.log(dStruct)
 		drinks.push(dStruct)
 		
 	}
-	//console.log(drinks)
 </script>
 
 <div class="backImage" />
 
 <div>
-	{#each drinks as formData}
-		<p>{formData.method}</p>
-		<p>{formData.caffeine}</p>
-		<p>{formData.drinkMl}</p>
-		<p>{formData.dttm}</p>
+	{#each drinks as drink, index}
+		{#if index % 500 == 0}
+			<div>{drink.caffeine}</div>
+			<div>{drink.dttm}</div>
+
+		{/if}		
 	{/each}
 </div>
 

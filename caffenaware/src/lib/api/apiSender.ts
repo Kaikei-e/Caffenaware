@@ -24,8 +24,6 @@ export async function sendData(dForms: drinkForm[]) {
   let resData;
   const hostname = "http://localhost:9000";
 
-  console.log(JSON.stringify(dForms))
-
   await fetch(hostname + '/api/calculate', {
 
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -39,7 +37,6 @@ export async function sendData(dForms: drinkForm[]) {
   }).then(res => {
     if (!res.ok) {
       console.error("Response is bad. Server error : " + res)
-      console.log(res.headers)
     } else {
       resData = res;
     }
