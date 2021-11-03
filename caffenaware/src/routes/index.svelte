@@ -1,48 +1,29 @@
 <script lang="ts">
-	import { nullChecker } from '$lib/validators/nullChecker';
-	import { blurOnEscape, selectTextOnFocus } from '$lib/validators/inputDirective';
 	import { drinkCount, isOverflowed, isUndered } from '$lib/store/store';
 
 	import CountUpDown from '$lib/forms/CountUpDown.svelte';
 	import DrinkDetails from '$lib/forms/DrinkDetails.svelte';
 	import { drinkForms } from '$lib/forms/formTypes';
-	import { resData, sendData } from '$lib/api/apiSender';
+	import { resStruct, sendData } from '$lib/api/apiSender';
 	import { get } from 'svelte/store';
-import dayjs from 'dayjs';
-import { goto } from '$app/navigation';
-
-	//let dynamicForms = drinkForms;
-
-	function realTimeNChecker() {
-		nullChecker();
-	}
+	import dayjs from 'dayjs';
+	import { goto } from '$app/navigation';
 
 
 	async function onSubmit() {
-		//const formData = new FormData(e.target);
-
-		/*
-		const data = {};
-
-		formData.forEach((value, key) => {
-			data[key] = value;
-		});
-		*/
 
 		for (let index = 0; index < $drinkForms.length; index++) {
 			const elem = $drinkForms[index];
-			elem.dttm = dayjs(elem.dttm).format('YYYY-MM-DDTHH:mm:ssZ[Z]')
-
+			elem.dttm = dayjs(elem.dttm).format('YYYY-MM-DDTHH:mm:ssZ[Z]');
 		}
 
 		console.log(get(drinkForms));
 		await sendData($drinkForms);
 
-		if ($resData){
-			goto("/result")
-
-		}else{
-			console.error("Bad request, try it again!")
+		if ($resStruct) {
+			goto('/result');
+		} else {
+			console.error('Bad request, try it again!');
 		}
 	}
 
@@ -68,15 +49,15 @@ import { goto } from '$app/navigation';
 			<CountUpDown />
 		</div>
 	</div>
-	<form class="text-gray-100">
+	<form method="POST" class="text-gray-100">
 		<ul>
 			<DrinkDetails />
-			<input
-				type="submit"
+			<button
+				type="button"
 				class="submit px-4 py-2 bg-primary border-white rounded-lg text-gray-700"
 				value="Submit"
-				on:submit={onSubmit}
-			/>
+				on:click={onSubmit}>Submit</button
+			>
 		</ul>
 	</form>
 
@@ -88,7 +69,6 @@ import { goto } from '$app/navigation';
 		<button on:click="{postTest}">Test</button>
 	</div>	
 		--->
-	
 </main>
 
 <style>

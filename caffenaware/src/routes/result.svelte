@@ -1,10 +1,11 @@
 <script lang="ts">
-	import { resData } from '$lib/api/apiSender';
+	import { resStruct } from '$lib/api/apiSender';
 	import { get } from 'svelte/store';
 
-	const resJson = get(resData);
-	let dForms = get(resData);
+	const resJson = get(resStruct);
+	let dForms = JSON.parse(resJson.res);
 
+	console.log(dForms)
 
 </script>
 
