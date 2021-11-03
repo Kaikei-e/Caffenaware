@@ -2,13 +2,12 @@ package calculator
 
 import (
 	"Caffenaware/goPkg/structs"
-	"fmt"
 	"time"
 )
 
-func Calculator(formData structs.FormData){
+func Calculator(formData structs.FormData) structs.TheDecays{
 	var totalCaffeine int
-	var caffeStruct structs.TheDecay
+	var caffeStructs structs.TheDecays
 	
 	if formData.Method == "1" {
 		totalCaffeine = formData.Caffeine * formData.Ml
@@ -26,20 +25,26 @@ func Calculator(formData structs.FormData){
 
 
 	for i := 0; toTmax <= float64(totalCaffeine); i++ {
+		var caffeStruct structs.TheDecay
+		
+
 		if i == 0 {
 
-			caffeStruct.CaffeineTransition = append(caffeStruct.CaffeineTransition, toTmax)
-			caffeStruct.Timeline = append(caffeStruct.Timeline, dateAt)
+			caffeStruct.CaffeineTransition = toTmax
+			caffeStruct.Timeline = dateAt
 
+			caffeStructs.Set = append(caffeStructs.Set, caffeStruct)
 			continue
 		}
 		
 		toTmax = toTmax * Tmax
 		dateAt = dateAt.Add(1 * time.Minute)
 
-		caffeStruct.CaffeineTransition = append(caffeStruct.CaffeineTransition, toTmax)
-		caffeStruct.Timeline = append(caffeStruct.Timeline, dateAt)
 
+		caffeStruct.CaffeineTransition = toTmax
+		caffeStruct.Timeline = dateAt
+
+		caffeStructs.Set = append(caffeStructs.Set, caffeStruct)
 		
 	}
 
@@ -47,24 +52,21 @@ func Calculator(formData structs.FormData){
 
 	var toZero float64
 	toZero = float64(formData.Caffeine)
-	dateAt = caffeStruct.Timeline[len(caffeStruct.Timeline) - 1]
+	dateAt = caffeStructs.Set[len(caffeStructs.Set) - 1].Timeline
 
-	for i := 0; toZero < 5.0000; i++ {
+	for i := 0; toZero > 5.0000; i++ {
+		var caffeStruct structs.TheDecay
+
 		dateAt = dateAt.Add(1* time.Minute)
-		caffeStruct.Timeline = append(caffeStruct.Timeline, dateAt)
+		caffeStruct.Timeline = dateAt
 
 		toZero = toZero * decayRate
-		caffeStruct.CaffeineTransition = append(caffeStruct.CaffeineTransition, toZero)
+		caffeStruct.CaffeineTransition = toZero
+
+		caffeStructs.Set = append(caffeStructs.Set, caffeStruct)
 
 
 	}
 
-	for _, v := range caffeStruct.CaffeineTransition {
-		fmt.Println(v)
-	}
-
-	for _, v := range caffeStruct.Timeline {
-		fmt.Println(v)
-	}
-
+	return caffeStructs
 }

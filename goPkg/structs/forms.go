@@ -9,7 +9,16 @@ type FormData struct{
 	Ml int `json:"drinkMl"`
 }
 
-type TheDecay struct {
-	Timeline []time.Time
-	CaffeineTransition []float64
+type TheDecay struct{
+	Timeline time.Time
+	CaffeineTransition float64
+
+}
+
+type TheDecays struct {
+	Set []TheDecay	
+}
+
+type TheResult struct {
+	Res []TheDecay 
 }

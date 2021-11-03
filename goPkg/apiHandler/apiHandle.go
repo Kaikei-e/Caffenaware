@@ -33,8 +33,16 @@ func APIReciever(ctx *gin.Context){
 
 	calculator.FormSorter(frmDts)
 
+	var caledList []structs.TheDecay 
+
 	for _, v := range frmDts {
-		calculator.Calculator(v)
+		caffeStructs := calculator.Calculator(v)
+
+		for _, x := range caffeStructs.Set {
+			caledList = append(caledList, x)
+
+		}
+		fmt.Println(len(caledList))
 	}
 
 	ctx.JSON(200, frmDts)
