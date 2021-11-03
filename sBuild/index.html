@@ -9,18 +9,18 @@
 
 		
 
-		<link rel="modulepreload" href="/_app/start-4997aefe.js">
+		<link rel="modulepreload" href="/_app/start-3d741ec2.js">
 		<link rel="modulepreload" href="/_app/chunks/vendor-75fca109.js">
 		<link rel="modulepreload" href="/_app/chunks/singletons-12a22614.js">
 		<link rel="modulepreload" href="/_app/pages/__layout.svelte-ee57ea4b.js">
-		<link rel="modulepreload" href="/_app/pages/index.svelte-85c177ad.js">
+		<link rel="modulepreload" href="/_app/pages/index.svelte-e4392b99.js">
 		<link rel="modulepreload" href="/_app/chunks/apiSender-caa9c2ed.js">
 		<link rel="stylesheet" href="/_app/assets/start-464e9d0a.css">
-		<link rel="stylesheet" href="/_app/assets/pages/__layout.svelte-aa4008f0.css">
+		<link rel="stylesheet" href="/_app/assets/pages/__layout.svelte-19aa8fc3.css">
 		<link rel="stylesheet" href="/_app/assets/pages/index.svelte-eb0cec42.css">
 
 		<script type="module">
-			import { start } from "/_app/start-4997aefe.js";
+			import { start } from "/_app/start-3d741ec2.js";
 			start({
 				target: document.body,
 				paths: {"base":"","assets":""},
@@ -34,7 +34,7 @@
 					error: null,
 					nodes: [
 						import("/_app/pages/__layout.svelte-ee57ea4b.js"),
-						import("/_app/pages/index.svelte-85c177ad.js")
+						import("/_app/pages/index.svelte-e4392b99.js")
 					],
 					page: {
 						host: location.host, // TODO this is redundant
@@ -59,8 +59,10 @@
 		<button class="countUp bg-primary rounded-lg text-center px-4 py-2 m-5 shadow-md svelte-1jwc1he">-1 drink :)
 		</button></div>
 	<br>
-</div></div></div>
-	<form method="POST" class="text-gray-100"><ul class="svelte-18bhp9v">
+</div>
+			<p class="text-xl text-gray-200 font-bold">Mode1 calculates the amount of caffeine in mg per 100 ml from the total amount of the drink</p>
+			<p class="text-xl text-gray-200 font-bold">Mode2 can calculate only the total amount of caffeine in mg.</p></div></div>
+	<form method="POST" class="text-gray-200 font-medium"><ul class="svelte-18bhp9v">
 	<div><p>Loading....</p></div>
 
 			<button type="button" class="submit px-4 py-2 bg-primary border-white rounded-lg text-gray-700 svelte-18bhp9v" value="Submit">Submit</button></ul></form>

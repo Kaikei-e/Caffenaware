@@ -16,14 +16,16 @@ output(internal)
 export interface drinkForm {
   No: number
   method: theMethods 
-  caffeineMg : number
+  caffeine : number
+  drinkMl: number
   dttm: string
 }
 
 export type drinkFormRes = {
   method: theMethods
-  caffeineMg : number
+  caffeine : number
   dttm: string
+  drinkMl: number
 }
 
 
@@ -38,8 +40,9 @@ export interface drinkFormHTML {
 
 export const initForm: drinkForm = {
   No : 1,
-  caffeineMg : 1,
+  caffeine : 1,
   method : "1",
+  drinkMl: 1,
   dttm : internal.toString(),
 };
 

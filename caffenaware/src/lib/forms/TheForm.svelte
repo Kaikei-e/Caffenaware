@@ -36,9 +36,23 @@
 			use:selectTextOnFocus
 			use:blurOnEscape
 			class="text-gray-700 rounded-lg bg-white"
-			bind:value={theForm.caffeineMg}
+			bind:value={theForm.caffeine}
 		/>
 		<label>mg, </label>
+		<label>Drink(ml)</label>
+		<input
+			id="{theForm.No}-drinkMl"
+			name="drinkMl"
+			type="number"
+			min="1"
+			max="1000"
+			required
+			use:selectTextOnFocus
+			use:blurOnEscape
+			class="text-gray-700 rounded-lg bg-white"
+			bind:value={theForm.drinkMl}
+		/>
+		<label>ml, </label>
 		<label>Date time:</label>
 		<input
 			id="{theForm.No}-time"

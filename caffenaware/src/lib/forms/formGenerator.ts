@@ -34,7 +34,8 @@ export function formGenerator() {
 		const theForm: drinkForm = {
 			No: drinkNum,
 			method: '1',
-			caffeineMg: 1,
+			caffeine: 1,
+			drinkMl: 1,
 			dttm: internal.toString()
 		}
 		drinkForms.update((n) => {

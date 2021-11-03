@@ -1,4 +1,4 @@
-import type { drinkForm, drinkFormRes } from "$lib/forms/formTypes";
+import type { drinkForm } from "$lib/forms/formTypes";
 import { writable } from "svelte/store";
 
 export type responseType = {
@@ -19,7 +19,6 @@ export const isSucess: responseType = {
 
 export const resStruct = writable<responseType>(isSucess)
 
-//export let recievedData = writable<string>("{err: bad request}");
 
 export async function sendData(dForms: drinkForm[]) {
   let resData;

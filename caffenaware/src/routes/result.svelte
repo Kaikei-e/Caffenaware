@@ -15,8 +15,9 @@
 
 		let dStruct: drinkFormRes = {
 			method: element["method"],
-			caffeineMg: element["caffeine"],
-			dttm: element["dttm"]
+			caffeine: element["caffeine"],
+			dttm: element["dttm"],
+			drinkMl: element["drinkMl"]
 		}
 		console.log(dStruct)
 		drinks.push(dStruct)
@@ -30,7 +31,8 @@
 <div>
 	{#each drinks as formData}
 		<p>{formData.method}</p>
-		<p>{formData.caffeineMg}</p>
+		<p>{formData.caffeine}</p>
+		<p>{formData.drinkMl}</p>
 		<p>{formData.dttm}</p>
 	{/each}
 </div>

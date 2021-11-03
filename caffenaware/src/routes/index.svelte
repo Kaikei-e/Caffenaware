@@ -9,9 +9,12 @@
 	import dayjs from 'dayjs';
 	import { goto } from '$app/navigation';
 
+	const info1 =
+		'Mode1 calculates the amount of caffeine in mg per 100 ml from the total amount of the drink';
+
+	const info2 = 'Mode2 can calculate only the total amount of caffeine in mg.';
 
 	async function onSubmit() {
-
 		for (let index = 0; index < $drinkForms.length; index++) {
 			const elem = $drinkForms[index];
 			elem.dttm = dayjs(elem.dttm).format('YYYY-MM-DDTHH:mm:ssZ');
@@ -19,8 +22,7 @@
 
 		console.log(get(drinkForms));
 		await sendData($drinkForms);
-		console.log("///////////////////////////")
-
+		console.log('///////////////////////////');
 
 		if ($resStruct) {
 			await goto('/result');
@@ -49,9 +51,11 @@
 				<p class="maxWarning">The drink number must be greater than 0! :)</p>
 			{/if}
 			<CountUpDown />
+			<p class=" text-xl text-gray-200 font-bold">{info1}</p>
+			<p class=" text-xl text-gray-200 font-bold">{info2}</p>
 		</div>
 	</div>
-	<form method="POST" class="text-gray-100">
+	<form method="POST" class="text-gray-200 font-medium">
 		<ul>
 			<DrinkDetails />
 			<button
