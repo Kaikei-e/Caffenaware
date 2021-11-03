@@ -45,8 +45,24 @@ func APIReciever(ctx *gin.Context){
 		fmt.Println(len(caledList))
 	}
 
+	calculator.ResultSorter(caledList)
+
+	fmt.Println(len(caledList))
+
+	summedList := calculator.CalSumTrans(caledList)
+
+	calculator.ResultSorter(summedList)
+
+	for i, v := range summedList {
+		
+		if i % 300 == 0 {
+			fmt.Println(v)		
+			
+		}
+			
+	}
+
+
 	ctx.JSON(200, frmDts)
-
-
 
 }

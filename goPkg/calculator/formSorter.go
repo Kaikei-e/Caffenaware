@@ -2,7 +2,6 @@ package calculator
 
 import (
 	"Caffenaware/goPkg/structs"
-	"fmt"
 	"sort"
 )
 
@@ -11,7 +10,4 @@ func FormSorter(forms []structs.FormData){
 		return forms[i].Datetime.Before(forms[j].Datetime)
 	})
 
-	for _, v := range forms {
-		fmt.Println(v)
-	}
 }
