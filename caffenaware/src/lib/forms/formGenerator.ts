@@ -2,13 +2,13 @@ import { drinkForms, initForm } from './formTypes';
 import type { drinkForm } from './formTypes';
 import { get } from 'svelte/store';
 import { drinkCount } from '$lib/store/store';
-import { tick } from "svelte/internal";
 import dayjs from 'dayjs'
 
 export const format = 'YYYY-MM-DDTHH:mm'
 export let date = new Date()
 
 let internal
+const ISO3339 = date.toISOString();
 
 const input = (x) => (internal = dayjs(x).format(format))
 const output = (x) => (date = dayjs(x, format).toDate())
@@ -30,7 +30,7 @@ export function formGenerator() {
 
 	} else {
 
-	
+
 		const theForm: drinkForm = {
 			No: drinkNum,
 			method: '1',

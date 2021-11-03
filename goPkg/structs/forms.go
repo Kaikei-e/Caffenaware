@@ -1,7 +1,9 @@
 package structs
 
+import "time"
+
 type FormData struct{
 	Method string `json:"method"`
 	Caffeine int `json:"caffeine"`
-	Datetime string `json:"datetime"`
+	Datetime time.Time `json:"dttm"`
 }

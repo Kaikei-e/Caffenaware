@@ -1,18 +1,24 @@
 <script lang="ts">
 	import { resStruct } from '$lib/api/apiSender';
+	import type { drinkFormRes } from '$lib/forms/formTypes';
 	import { get } from 'svelte/store';
 
-	const resJson = get(resStruct);
-	let dForms = JSON.parse(resJson.res);
+	//const resJson = get(resStruct););
+	console.log(get(resStruct).res);
+	let jsonObjs = get(resStruct).res;
+	let drinks: drinkFormRes[];
 
-	console.log(dForms)
+	for (const iterator of jsonObjs) {
+		drinks.push(iterator);
+	}
 
+	//console.log(drinks)
 </script>
 
 <div class="backImage" />
 
 <div>
-	{#each dForms as formData, index}
+	{#each drinks as formData, index}
 		<p>{formData[index].method}</p>
 		<p>{formData[index].caffeine}</p>
 		<p>{formData[index].dttm}</p>

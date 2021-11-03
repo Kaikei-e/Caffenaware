@@ -5,6 +5,7 @@ export const format = 'YYYY-MM-DDTHH:mm'
 export let date = new Date()
 
 let internal
+const ISO3339 = date.toISOString();
 
 const input = (x) => (internal = dayjs(x).format(format))
 const output = (x) => (date = dayjs(x, format).toDate())
@@ -19,6 +20,13 @@ export interface drinkForm {
   dttm: string
 }
 
+export type drinkFormRes = {
+  method: theMethods
+  caffeineMg : number
+  dttm: string
+}
+
+
 
 export interface drinkFormHTML {
   No: number
@@ -32,7 +40,7 @@ export const initForm: drinkForm = {
   No : 1,
   caffeineMg : 1,
   method : "1",
-  dttm : internal,
+  dttm : internal.toString(),
 };
 
 const dForms : drinkForm[] = [];

@@ -1,14 +1,20 @@
-import type { drinkForm } from "$lib/forms/formTypes";
-import { get, writable } from "svelte/store";
+import type { drinkForm, drinkFormRes } from "$lib/forms/formTypes";
+import { writable } from "svelte/store";
 
 export type responseType = {
   loading: boolean,
-  res: string,
+  res: [],
+}
+
+export const defaultRes: drinkFormRes = {
+  method: "1",
+  caffeineMg: 1,
+  dttm: "2021-11-3T20:10",
 }
 
 export const isSucess: responseType = {
   loading: false,
-  res: '{ "response":"badrequest"}'
+  res: []
 }
 
 export const resStruct = writable<responseType>(isSucess)
@@ -18,6 +24,8 @@ export const resStruct = writable<responseType>(isSucess)
 export async function sendData(dForms: drinkForm[]) {
   let resData;
   const hostname = "http://localhost:9000";
+
+  console.log(JSON.stringify(dForms))
 
   await fetch(hostname + '/api/calculate', {
 
@@ -42,9 +50,15 @@ export async function sendData(dForms: drinkForm[]) {
 
   if (resData.ok) {
     const data = await resData.json();
+    console.log(data)
 
-    resStruct.set(data)
-    console.log(get(resStruct));
+    const ress: responseType = {
+      loading: false,
+      res: data
+    }
+
+
+    resStruct.set(ress)
 
   } else {
     console.error("Bad request.");

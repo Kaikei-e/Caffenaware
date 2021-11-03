@@ -14,14 +14,16 @@
 
 		for (let index = 0; index < $drinkForms.length; index++) {
 			const elem = $drinkForms[index];
-			elem.dttm = dayjs(elem.dttm).format('YYYY-MM-DDTHH:mm:ssZ[Z]');
+			elem.dttm = dayjs(elem.dttm).format('YYYY-MM-DDTHH:mm:ssZ');
 		}
 
 		console.log(get(drinkForms));
 		await sendData($drinkForms);
+		console.log("///////////////////////////")
+
 
 		if ($resStruct) {
-			goto('/result');
+			await goto('/result');
 		} else {
 			console.error('Bad request, try it again!');
 		}
