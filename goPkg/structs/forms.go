@@ -8,3 +8,8 @@ type FormData struct{
 	Datetime time.Time `json:"dttm"`
 	Ml int `json:"drinkMl"`
 }
+
+type TheDecay struct {
+	Timeline []time.Time
+	CaffeineTransition []float64
+}

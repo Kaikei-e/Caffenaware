@@ -1,6 +1,7 @@
 package apihandler
 
 import (
+	"Caffenaware/goPkg/calculator"
 	"Caffenaware/goPkg/structs"
 	"encoding/json"
 	"fmt"
@@ -29,6 +30,12 @@ func APIReciever(ctx *gin.Context){
 
 
 	fmt.Println(frmDts)
+
+	calculator.FormSorter(frmDts)
+
+	for _, v := range frmDts {
+		calculator.Calculator(v)
+	}
 
 	ctx.JSON(200, frmDts)
 
