@@ -6,22 +6,32 @@
 	//const resJson = get(resStruct););
 	console.log(get(resStruct).res);
 	let jsonObjs = get(resStruct).res;
-	let drinks: drinkFormRes[];
+	let drinks: Array<drinkFormRes> = [];
 
-	for (const iterator of jsonObjs) {
-		drinks.push(iterator);
+	for (let index = 0; index < jsonObjs.length; index++) {
+		const element = jsonObjs[index];
+
+		console.log(element);
+
+		let dStruct: drinkFormRes = {
+			method: element["method"],
+			caffeineMg: element["caffeine"],
+			dttm: element["dttm"]
+		}
+		console.log(dStruct)
+		drinks.push(dStruct)
+		
 	}
-
 	//console.log(drinks)
 </script>
 
 <div class="backImage" />
 
 <div>
-	{#each drinks as formData, index}
-		<p>{formData[index].method}</p>
-		<p>{formData[index].caffeine}</p>
-		<p>{formData[index].dttm}</p>
+	{#each drinks as formData}
+		<p>{formData.method}</p>
+		<p>{formData.caffeineMg}</p>
+		<p>{formData.dttm}</p>
 	{/each}
 </div>
 

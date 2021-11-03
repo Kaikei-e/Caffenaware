@@ -6,7 +6,7 @@ export type responseType = {
   res: [],
 }
 
-export const defaultRes: drinkFormRes = {
+export const defaultRes = {
   method: "1",
   caffeineMg: 1,
   dttm: "2021-11-3T20:10",
