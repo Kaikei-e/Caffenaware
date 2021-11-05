@@ -22,3 +22,9 @@ type TheDecays struct {
 type TheResult struct {
 	Res []TheDecay 
 }
+
+type ResStruct struct{
+	Timeline string `json:"dttm"`
+	CaffeineTransition float64 `json:"caffeine"`
+
+}

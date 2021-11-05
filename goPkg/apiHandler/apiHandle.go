@@ -53,6 +53,17 @@ func APIReciever(ctx *gin.Context){
 
 	calculator.ResultSorter(summedList)
 
+	var res []structs.ResStruct
+
+
+	for _, v := range summedList {
+		var rInit structs.ResStruct
+		rInit.Timeline = v.Timeline.Format("2006-01-02T15:04:05.000")
+		rInit.CaffeineTransition = v.CaffeineTransition
+
+		res = append(res, rInit)
+	}
+
 	for i, v := range summedList {
 		
 		if i % 300 == 0 {
@@ -63,6 +74,6 @@ func APIReciever(ctx *gin.Context){
 	}
 
 
-	ctx.JSON(200, summedList)
+	ctx.JSON(200, res)
 
 }
