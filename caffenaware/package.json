@@ -35,9 +35,8 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"chart.js": "3.6.0",
-		"dayjs": "^1.10.7",
-		"moment": "^2.29.1",
-		"svelte-chartjs": "^1.1.1"
+		"@carbon/charts": "^0.51.3",
+		"carbon-components": "^10.47.1",
+		"dayjs": "^1.10.7"
 	}
 }

@@ -622,6 +622,16 @@ carbon-components@10.40.0:
     lodash.debounce "^4.0.8"
     warning "^3.0.0"
 
+carbon-components@^10.47.1:
+  version "10.47.1"
+  resolved "https://registry.yarnpkg.com/carbon-components/-/carbon-components-10.47.1.tgz#9a6c5b54d9d7dc4e75aa9ba0e8d6c60ef27ab5ff"
+  integrity sha512-1/DajErW6vUWhCSZuiqFdo7kXx3WkGOkOSCW8xcWmQ4BQyGC70fcsselQoAXPwLvUtM4fCGJuGAG/TWwliUpwQ==
+  dependencies:
+    "@carbon/telemetry" "0.0.0-alpha.6"
+    flatpickr "4.6.1"
+    lodash.debounce "^4.0.8"
+    warning "^3.0.0"
+
 chalk@^2.0.0:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.4.2.tgz#cd42541677a54333cf541a49108c1432b44c9424"
@@ -638,11 +648,6 @@ chalk@^4.0.0, chalk@^4.1.2:
   dependencies:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
-
-chart.js@3.6.0, chart.js@^3.5.0:
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-3.6.0.tgz#a87fce8431d4e7c5523d721f487f53aada1e42fe"
-  integrity sha512-iOzzDKePL+bj+ccIsVAgWQehCXv8xOKGbaU2fO/myivH736zcx535PGJzQGanvcSGVOqX6yuLZsN3ygcQ35UgQ==
 
 cheap-watch@^1.0.4:
   version "1.0.4"
@@ -2271,11 +2276,6 @@ modern-normalize@^1.1.0:
   resolved "https://registry.yarnpkg.com/modern-normalize/-/modern-normalize-1.1.0.tgz#da8e80140d9221426bd4f725c6e11283d34f90b7"
   integrity sha512-2lMlY1Yc1+CUy0gw4H95uNN7vjbpoED7NNRSBHE25nWfLBdmMzFCsPshlzbxHz+gYMcBEUN8V4pU16prcdPSgA==
 
-moment@^2.29.1:
-  version "2.29.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
-  integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
-
 mri@^1.1.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/mri/-/mri-1.2.0.tgz#6721480fec2a11a4889861115a48b6cbe7cc8f0b"
@@ -3085,13 +3085,6 @@ supports-color@^7.1.0:
   integrity sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==
   dependencies:
     has-flag "^4.0.0"
-
-svelte-chartjs@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/svelte-chartjs/-/svelte-chartjs-1.1.1.tgz#6127a687dff4b0988b2cb97e4746d56139aea53f"
-  integrity sha512-pruCMGZd0e630a28ptyIf2MVQKvKiQ1KL7psHlUQhwhlvifJCKD/yQ/CRdsjkq3jZLRMN/DdB+HsKQXxoFoK7g==
-  dependencies:
-    chart.js "^3.5.0"
 
 svelte-check@^2.2.6:
   version "2.2.8"
