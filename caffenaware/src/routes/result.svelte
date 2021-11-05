@@ -10,9 +10,9 @@
 	//import 'chartjs-adapter-moment'; // or another adapter to avoid moment
 	Chart.register(...registerables);
 
-	//import '@carbon/charts/styles.min.css';
-	//import 'carbon-components/css/carbon-components.min.css';
-	//import { LineChart } from '@carbon/charts-svelte';
+	import '@carbon/charts/styles.min.css';
+	import 'carbon-components/css/carbon-components.min.css';
+	import { LineChart } from '@carbon/charts-svelte';
 
 	let ctx;
 	let chartValues = [];
@@ -95,10 +95,12 @@
 <main>
 	<div class="backImage">
 
-		<Line data={dataLine} options={{responsive: true}}/>
 
 		<!--- 
 		<canvas bind:this={canvasChart} id="chart" />
+		<Line data={dataLine} options={{responsive: true}}/>
+
+		--->
 
 		<LineChart data={[{ group: 'Caffeine', key: chartLabels, value: chartValues }]} 
 		options={{
@@ -117,7 +119,6 @@
 		},
 		"height": "400px"
 	}}/>	
-		--->
 	</div>
 </main>
 

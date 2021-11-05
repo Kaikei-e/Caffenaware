@@ -21,10 +21,10 @@ export default {
 
 
 			optimizeDeps: {
-				include: ['@carbon/charts'],
+				include: ['@carbon/charts', 'chart.js'],
 			},
 			ssr: {
-				noExternal: ['@carbon/charts'].filter(Boolean),
+				noExternal: ['@carbon/charts', 'chart.js'],
 			},
 		}
 	},
