@@ -3,15 +3,11 @@
 	import type { drinkFormRes } from '$lib/forms/formTypes';
 	import { get } from 'svelte/store';
 
-	//import { Chart, registerables } from 'chart.js';
-
-	//Chart.register(...registerables);
-
 	//import '@carbon/charts/styles.min.css';
 	//import 'carbon-components/css/carbon-components.min.css';
 	//import "carbon-components-svelte/css/all.css";
 
-	import 'carbon-components-svelte/css/white.css';
+	//import 'carbon-components-svelte/css/white.css';
 
 	import { LineChart } from '@carbon/charts-svelte';
 	import type { drawType } from '$lib/structs/resStructs';
@@ -19,10 +15,11 @@
 
 	let normalMin;
 	let defoComponents;
+
 	onMount(async () => {
 		normalMin = (await import('@carbon/charts/styles.min.css')).default;
 		defoComponents = (await import('carbon-components/css/carbon-components.min.css')).default;
-		await converter();
+		console.log('start3');
 	});
 
 	let ctx;
@@ -33,85 +30,27 @@
 	let dType: drawType[] = [];
 
 	let jsonObjs = get(resStruct).res;
-	let drinks: Array<drinkFormRes> = [];
+	//let drinks: Array<drinkFormRes> = [];
 
-	function converter() {
-		for (let index = 0; index < jsonObjs.length; index++) {
-			const element = jsonObjs[index];
 
-			let dStruct: drinkFormRes = {
-				caffeine: element['caffeine'],
-				dttm: element['dttm']
-			};
-			drinks.push(dStruct);
-		}
+	console.log('start');
 
-		for (let index = 0; index < drinks.length; index++) {
-			const element = drinks[index];
+	for (let index = 0; index < jsonObjs.length; index++) {
+		const element = jsonObjs[index];
 
-			dType.push({
-				group: 'Caffeine',
-				date: element.dttm,
-				value: element.caffeine
-			});
-		}
-
-		return true;
+		dType.push({
+			group: 'Caffeine',
+			date: element['dttm'],
+			value: element['caffeine']
+		});
 	}
+	console.log(dType);
+	
+	console.log('start2');
+
 
 	///////////////////////////////////////////////////
 	/*
-	const step = chartLabels.length / 200;
-
-	let canvasChart;
-	//onMount(async() => {
-	ctx = canvasChart.getContext('2d');
-	let chart = new Chart(ctx, {
-		type: 'line',
-		data: {
-			labels: chartLabels,
-			datasets: chartValues
-		},
-		options: {
-			responsive: true,
-			scales: {
-				y: {
-					ticks: {
-						stepSize: step
-					}
-				}
-			}
-		}
-	});
-	//})
-
-	let dataLine = {
-		labels: chartLabels,
-		datasets: [
-			{
-				label: 'Caffeine',
-				fill: true,
-				lineTension: 0.3,
-				backgroundColor: 'rgba(225, 204,230, .3)',
-				borderColor: 'rgb(205, 130, 158)',
-				borderCapStyle: 'butt',
-				borderDash: [],
-				borderDashOffset: 0.0,
-				borderJoinStyle: 'miter',
-				pointBorderColor: 'rgb(205, 130,1 58)',
-				pointBackgroundColor: 'rgb(255, 255, 255)',
-				pointBorderWidth: 10,
-				pointHoverRadius: 5,
-				pointHoverBackgroundColor: 'rgb(0, 0, 0)',
-				pointHoverBorderColor: 'rgba(220, 220, 220,1)',
-				pointHoverBorderWidth: 2,
-				pointRadius: 1,
-				pointHitRadius: 10,
-				data: chartValues
-			}
-		]
-	};
-
 */
 </script>
 
@@ -121,35 +60,38 @@
 
 		<canvas bind:this={canvasChart} id="chart" />
 		<Line data={dataLine} options={{responsive: true}}/>
+		{#if normalMin && defoComponents}
+		{/if}
 
 		--->
-		{#if normalMin && defoComponents}
-			{#await converter}
-				<p class=" text-center text-white font-bold">Drawing...</p>
-			{:then}
-				<LineChart
-					data={dType}
-					options={{
-						title: 'Line (discrete)',
-						axes: {
-							bottom: {
-								title: '2019 Annual Sales Figures',
-								mapsTo: 'key',
-								scaleType: 'labels'
-							},
-							left: {
-								mapsTo: 'value',
-								title: 'Conversion rate',
-								scaleType: 'linear'
-							}
-						},
+		{#await onMount}
+			<p>Start4</p>
+			<p class=" text-center text-white font-bold">Drawing...</p>
+		{:then}
+			<p>Start5</p>
 
-						curve: 'curveMonotoneX',
-						height: '800px'
-					}}
-				/>
-			{/await}
-		{/if}
+			<LineChart
+				data={dType}
+				options={{
+					title: 'Line (discrete)',
+					axes: {
+						bottom: {
+							title: 'Caffeine Decay',
+							mapsTo: 'key',
+							scaleType: 'labels'
+						},
+						left: {
+							mapsTo: 'value',
+							title: 'Conversion rate',
+							scaleType: 'linear'
+						}
+					},
+
+					curve: 'curveMonotoneX',
+					height: '800px'
+				}}
+			/>
+		{/await}
 	</div>
 
 	<!--- 

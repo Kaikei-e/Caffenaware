@@ -9,6 +9,7 @@
 	import dayjs from 'dayjs';
 	import { goto } from '$app/navigation';
 
+	
 	const info1 =
 		'Mode1 calculates the amount of caffeine in mg per 100 ml from the total amount of the drink';
 
