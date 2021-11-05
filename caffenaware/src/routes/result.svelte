@@ -2,9 +2,10 @@
 	import { resStruct } from '$lib/api/apiSender';
 	import type { drinkFormRes } from '$lib/forms/formTypes';
 	import { get } from 'svelte/store';
-	import { Chart } from 'chart.js';
+	import { Chart, registerables } from 'chart.js';
 	import { onMount } from 'svelte';
 
+	Chart.register(...registerables);
 	let jsonObjs = get(resStruct).res;
 	let drinks: Array<drinkFormRes> = [];
 
@@ -29,32 +30,36 @@
 		chartLabels.push(element.dttm);
 	}
 
-	let chartCanvas;
 
-	onMount(async () => {});
-  function renderChart() {
-    let ctx = document.getElementById("myChart").getContext("2d");
-    let chart = new Chart(ctx, {
-      type: "line",
-      data: {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
-        datasets: [
-          {
-            label: "My First dataset",
-            backgroundColor: "rgb(255, 99, 132)",
-            borderColor: "rgb(255, 99, 132)",
-            data: [0, 10, 5, 2, 20, 30, 45]
-          }
-        ]
-      },
-      options: {}
-    });
-  }
+	///////////////////////////////////////////////////
+	const step = chartLabels.length / 200;
+
+	function renderChart() {
+		let chart = new Chart(ctx, {
+			type: 'line',
+			data: {
+				labels: chartLabels,
+				datasets: chartValues
+			},
+			options: {
+				responsive: true,
+				scales: {
+					y: {
+						ticks: {
+							stepSize: step
+						}
+					}
+				}
+			}
+		});
+	}
+
+	onMount(renderChart)
 </script>
 
 <main>
 	<div class="backImage">
-		<canvas id="myChart" />
+		<canvas bind:this={ctx} id="myChart" />
 	</div>
 </main>
 
