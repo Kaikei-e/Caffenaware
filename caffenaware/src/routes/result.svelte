@@ -2,10 +2,9 @@
 	import { resStruct } from '$lib/api/apiSender';
 	import type { drinkFormRes } from '$lib/forms/formTypes';
 	import { get } from 'svelte/store';
-	import { Chart, registerables } from 'chart.js';
+	import Chart from 'chart.js/auto';
 	import { onMount } from 'svelte';
 
-	Chart.register(...registerables);
 	let jsonObjs = get(resStruct).res;
 	let drinks: Array<drinkFormRes> = [];
 
