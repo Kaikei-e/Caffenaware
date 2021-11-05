@@ -17,9 +17,10 @@
 	let defoComponents;
 
 	onMount(async () => {
-		normalMin = (await import('@carbon/charts/styles.min.css')).default;
-		defoComponents = (await import('carbon-components/css/carbon-components.min.css')).default;
+		//normalMin = (await import('@carbon/charts/styles.min.css')).default;
+		//defoComponents = (await import('carbon-components/css/carbon-components.min.css')).default;
 		console.log('start3');
+		await drawer();
 	});
 
 	let ctx;
@@ -35,7 +36,9 @@
 
 	console.log('start');
 
-	for (let index = 0; index < jsonObjs.length; index++) {
+	function drawer(){
+
+		for (let index = 0; index < jsonObjs.length; index++) {
 		const element = jsonObjs[index];
 
 		dType.push({
@@ -44,7 +47,7 @@
 			value: element['caffeine']
 		});
 	}
-	console.log(dType);
+	}
 	
 	console.log('start2');
 
