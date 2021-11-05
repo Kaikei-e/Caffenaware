@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { resStruct } from '$lib/api/apiSender';
-	import type { drinkFormRes } from '$lib/forms/formTypes';
 	import { get } from 'svelte/store';
 
 	//import '@carbon/charts/styles.min.css';
@@ -13,64 +12,54 @@
 	import type { drawType } from '$lib/structs/resStructs';
 	import { onMount } from 'svelte';
 
-	let normalMin;
-	let defoComponents;
+	let promise
 
-	onMount(async () => {
-		//normalMin = (await import('@carbon/charts/styles.min.css')).default;
-		//defoComponents = (await import('carbon-components/css/carbon-components.min.css')).default;
-		console.log('start3');
-		await drawer();
+	onMount(() => {
+		promise = drawer();
+
 	});
 
-	let ctx;
-	let chartGroup = [];
-	let chartValues = [];
-	let chartLabels = [];
-
 	let dType: drawType[] = [];
+	
 
 	let jsonObjs = get(resStruct).res;
-	//let drinks: Array<drinkFormRes> = [];
-
 
 	console.log('start');
 
-	function drawer(){
-
+	async function drawer() {
 		for (let index = 0; index < jsonObjs.length; index++) {
-		const element = jsonObjs[index];
+			const element = jsonObjs[index];
 
-		dType.push({
-			group: 'Caffeine',
-			date: element['dttm'],
-			value: element['caffeine']
-		});
+			dType.push({
+				group: 'Caffeine',
+				date: element['dttm'],
+				value: element['caffeine']
+			});
+
+			if (dType.length == jsonObjs.length) {
+				isConverted = true;
+			}
+		}
+
+		await console.log('converted');
+		return dType = dType;
 	}
-	}
-	
+
 	console.log('start2');
-
 
 	///////////////////////////////////////////////////
 	/*
-*/
+	 */
+
+	drawer()
 </script>
 
 <main class="h-screen w-screen">
 	<div class="backImage">
-		<!--- 
-
-		<canvas bind:this={canvasChart} id="chart" />
-		<Line data={dataLine} options={{responsive: true}}/>
-		{#if normalMin && defoComponents}
-		{/if}
-
-		--->
-		{#await onMount}
+		{#await promise}
 			<p>Start4</p>
 			<p class=" text-center text-white font-bold">Drawing...</p>
-		{:then}
+		{:then dType}
 			<p>Start5</p>
 
 			<LineChart
