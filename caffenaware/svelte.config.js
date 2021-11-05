@@ -9,7 +9,24 @@ export default {
 			pages: '../sBuild',
 			assets: '../sBuild',
 			fallback: null
-		})
+		}),
+		vite: {
+			/*
+			ssr: {
+				noExternal: ['chart.js']
+			},
+			optimizeDeps: {
+				include: ['chart.js']
+			}*/
+
+
+			optimizeDeps: {
+				include: ['@carbon/charts'],
+			},
+			ssr: {
+				noExternal: ['@carbon/charts'].filter(Boolean),
+			},
+		}
 	},
 
 	preprocess: [
