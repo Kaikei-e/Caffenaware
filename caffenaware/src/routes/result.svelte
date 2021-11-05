@@ -9,8 +9,21 @@
 
 	//import '@carbon/charts/styles.min.css';
 	//import 'carbon-components/css/carbon-components.min.css';
+	//import "carbon-components-svelte/css/all.css";
+
+	import 'carbon-components-svelte/css/white.css';
+
 	import { LineChart } from '@carbon/charts-svelte';
 	import type { drawType } from '$lib/structs/resStructs';
+	import { onMount } from 'svelte';
+
+	let normalMin;
+	let defoComponents;
+	onMount(async () => {
+		normalMin = (await import('@carbon/charts/styles.min.css')).default;
+		defoComponents = (await import('carbon-components/css/carbon-components.min.css')).default;
+		await converter();
+	});
 
 	let ctx;
 	let chartGroup = [];
@@ -43,17 +56,8 @@
 			});
 		}
 
-	  console.log(
-			dType.forEach((val) => {
-				console.log(val.value);
-				console.log(val.date);
-			})
-		);
-
-		return;
+		return true;
 	}
-
-	converter();
 
 	///////////////////////////////////////////////////
 	/*
@@ -119,30 +123,36 @@
 		<Line data={dataLine} options={{responsive: true}}/>
 
 		--->
+		{#if normalMin && defoComponents}
+			{#await converter}
+				<p class=" text-center text-white font-bold">Drawing...</p>
+			{:then}
+				<LineChart
+					data={dType}
+					options={{
+						title: 'Line (discrete)',
+						axes: {
+							bottom: {
+								title: '2019 Annual Sales Figures',
+								mapsTo: 'key',
+								scaleType: 'labels'
+							},
+							left: {
+								mapsTo: 'value',
+								title: 'Conversion rate',
+								scaleType: 'linear'
+							}
+						},
 
-		<LineChart
-			data={dType}
-			options={{
-				title: 'Line (discrete)',
-				axes: {
-					bottom: {
-						title: '2019 Annual Sales Figures',
-						mapsTo: 'key',
-						scaleType: 'labels'
-					},
-					left: {
-						mapsTo: 'value',
-						title: 'Conversion rate',
-						scaleType: 'linear'
-					}
-				},
+						curve: 'curveMonotoneX',
+						height: '800px'
+					}}
+				/>
+			{/await}
+		{/if}
+	</div>
 
-				curve: 'curveMonotoneX',
-				height: '800px'
-			}}
-		/>
-
-		<!--- 
+	<!--- 
 
 		<div class="m-5">
 			<LineChart
@@ -270,7 +280,6 @@
 		</div>
 
 	--->
-	</div>
 </main>
 
 <style>

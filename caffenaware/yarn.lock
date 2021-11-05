@@ -612,6 +612,14 @@ caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001272, caniuse-lite@^1.0.30001274:
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001278.tgz#51cafc858df77d966b17f59b5839250b24417fff"
   integrity sha512-mpF9KeH8u5cMoEmIic/cr7PNS+F5LWBk0t2ekGT60lFf0Wq+n9LspAj0g3P+o7DQhD3sUdlMln4YFAWhFYn9jg==
 
+carbon-components-svelte@^0.47.3:
+  version "0.47.3"
+  resolved "https://registry.yarnpkg.com/carbon-components-svelte/-/carbon-components-svelte-0.47.3.tgz#706621811995c0a809a6bab77381198857ca254a"
+  integrity sha512-dn5GvpgUgNiuyHGfoAlekoseZTfZusgC/J9bXM5NJ4KAO9CCGO+XbeTAgM7r9xiqi++QmRc+UohOTWdG+snL0w==
+  dependencies:
+    carbon-icons-svelte "^10.36.0"
+    flatpickr "4.6.9"
+
 carbon-components@10.40.0:
   version "10.40.0"
   resolved "https://registry.yarnpkg.com/carbon-components/-/carbon-components-10.40.0.tgz#59c339dd964624cd07802dc695ceed6f32a07ef7"
@@ -631,6 +639,11 @@ carbon-components@^10.47.1:
     flatpickr "4.6.1"
     lodash.debounce "^4.0.8"
     warning "^3.0.0"
+
+carbon-icons-svelte@^10.36.0:
+  version "10.38.0"
+  resolved "https://registry.yarnpkg.com/carbon-icons-svelte/-/carbon-icons-svelte-10.38.0.tgz#daf74e4a2a826ad994c950a67307b8392d80ca3a"
+  integrity sha512-uEckbbNHFtDzKz+QRx6GxvZcezXXqfDOiaE7mupkiRPkBbALrA9CPJZbI5Q2XW5mpn8lgN3IlTm2u1iJEAlVJw==
 
 chalk@^2.0.0:
   version "2.4.2"
@@ -1699,6 +1712,11 @@ flatpickr@4.6.1:
   version "4.6.1"
   resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.1.tgz#9eb498ab805dd27f5ae02e1ac6ac6c099ce45e94"
   integrity sha512-3ULSxbXmcMIRzer/2jLNweoqHpwDvsjEawO2FUd9UFR8uPwLM+LruZcPDpuZStcEgbQKhuFOfXo4nYdGladSNw==
+
+flatpickr@4.6.9:
+  version "4.6.9"
+  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.9.tgz#9a13383e8a6814bda5d232eae3fcdccb97dc1499"
+  integrity sha512-F0azNNi8foVWKSF+8X+ZJzz8r9sE1G4hl06RyceIaLvyltKvDl6vqk9Lm/6AUUCi5HWaIjiUbk7UpeE/fOXOpw==
 
 flatted@^3.1.0:
   version "3.2.2"

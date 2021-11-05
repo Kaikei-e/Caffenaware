@@ -46,7 +46,6 @@ export async function sendData(dForms: drinkForm[]) {
 
   if (resData.ok) {
     const data = await resData.json();
-    console.log(data)
 
     const ress: responseType = {
       loading: false,
