@@ -18,7 +18,7 @@
 		promise = drawer();
 	});
 
-	let dType:drawType[] = [];
+	let dType: drawType[] = [];
 
 	const testData = [
 		{
@@ -39,7 +39,7 @@
 	];
 
 	let jsonObjs = get(resStruct).res;
-	let formatted;
+	console.log(jsonObjs.length)
 
 	drawer();
 
@@ -47,19 +47,23 @@
 
 	async function drawer() {
 		for (let index = 0; index < jsonObjs.length; index++) {
-			const element = jsonObjs[index];
-			//console.log(element);
+			if (index % 6 === 0) {
+				const element = jsonObjs[index];
+				//console.log(element);
 
-			let elem = {
-				"group": 'Caffeine',
-				"date": element['dttm'] + 'Z',
-				"value": element['caffeine']
-			};
+				let elem = {
+					group: 'Caffeine',
+					date: element['dttm'] + 'Z',
+					value: element['caffeine']
+				};
 
-			dType.push(elem);
-
+				dType.push(elem);
+				
+			}
 		}
 
+		console.log(dType.length);
+		 
 		await console.log('converted');
 	}
 
