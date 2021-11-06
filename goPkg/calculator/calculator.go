@@ -18,8 +18,6 @@ func Calculator(formData structs.FormData) structs.TheDecays{
 		totalCaffeine = formData.Caffeine
 	}
 
-	fmt.Println("/////////////")
-	fmt.Println(totalCaffeine)
 
 
 	const Tmax = 1.1333
@@ -32,8 +30,6 @@ func Calculator(formData structs.FormData) structs.TheDecays{
 	for i := 0; toTmax < 10 * float64(totalCaffeine); i++ {
 		var caffeStruct structs.TheDecay
 		
-		fmt.Println(toTmax)
-		fmt.Println(dateAt)
 
 		if i == 0 {
 
