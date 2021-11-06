@@ -44,6 +44,12 @@ func Calculator(formData structs.FormData) structs.TheDecays{
 		toTmax = toTmax * Tmax
 		dateAt = dateAt.Add(1 * time.Minute)
 
+		if toTmax > float64(formData.Caffeine) {
+			caffeStruct.CaffeineTransition = float64(formData.Caffeine)
+			caffeStruct.Timeline = dateAt
+			break
+		}
+
 
 		caffeStruct.CaffeineTransition = toTmax
 		caffeStruct.Timeline = dateAt
