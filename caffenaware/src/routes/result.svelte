@@ -3,7 +3,7 @@
 	import { get } from 'svelte/store';
 
 	import '@carbon/charts/styles.min.css';
-	//import 'carbon-components/css/carbon-components.min.css';
+	import 'carbon-components/css/carbon-components.min.css';
 	//import "carbon-components-svelte/css/all.css";
 
 	//import 'carbon-components-svelte/css/white.css';
