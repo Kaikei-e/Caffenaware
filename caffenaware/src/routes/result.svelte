@@ -2,7 +2,7 @@
 	import { resStruct } from '$lib/api/apiSender';
 	import { get } from 'svelte/store';
 
-	//import '@carbon/charts/styles.min.css';
+	import '@carbon/charts/styles.min.css';
 	//import 'carbon-components/css/carbon-components.min.css';
 	//import "carbon-components-svelte/css/all.css";
 
@@ -12,62 +12,62 @@
 	import type { drawType } from '$lib/structs/resStructs';
 	import { onMount } from 'svelte';
 
-	let promise
+	let promise;
 
 	onMount(() => {
 		promise = drawer();
-
 	});
 
-	let dType = [];
+	let dType:drawType[] = [];
 
-	const testData = [{
-    "group": "Caffeine",
-    "date": "2021-11-07T19:31:00.000",
-    "value": 5.112241110621567
-	},
-	{
-    "group": "Caffeine",
-    "date": "2021-11-07T21:31:00.000",
-    "value": 5.112241110621567
-},{
-    "group": "Caffeine",
-    "date": "2021-11-07T06:31:00.000",
-    "value": 5.112241110621567
-}]
-	
+	const testData = [
+		{
+			group: 'Caffeine',
+			date: '2021-11-07T19:31:00.000',
+			value: 5.112241110621567
+		},
+		{
+			group: 'Caffeine',
+			date: '2021-11-07T21:31:00.000',
+			value: 5.112241110621567
+		},
+		{
+			group: 'Caffeine',
+			date: '2021-11-07T06:31:00.000',
+			value: 5.112241110621567
+		}
+	];
 
 	let jsonObjs = get(resStruct).res;
+	let formatted;
 
-	drawer()
-
+	drawer();
 
 	console.log('start');
 
 	async function drawer() {
 		for (let index = 0; index < jsonObjs.length; index++) {
 			const element = jsonObjs[index];
+			//console.log(element);
 
 			let elem = {
 				"group": 'Caffeine',
-				"date": element['dttm'],
-				"value": element['caffeine'],
-			}
+				"date": element['dttm'] + 'Z',
+				"value": element['caffeine']
+			};
 
 			dType.push(elem);
+
 		}
 
 		await console.log('converted');
-		//return dType = dType;
 	}
 
-	console.log(dType)
 	console.log('start2');
 
 	///////////////////////////////////////////////////
 	/*
 	 */
-
 </script>
 
 <main class="h-screen w-screen">
@@ -79,13 +79,13 @@
 			<p>Start5</p>
 
 			<LineChart
-				data={testData}
+				data={dType}
 				options={{
 					title: 'Line (Time Series)',
 					axes: {
 						bottom: {
 							title: 'Caffeine Decay',
-							mapsTo: 'key',
+							mapsTo: 'date',
 							scaleType: 'time'
 						},
 						left: {

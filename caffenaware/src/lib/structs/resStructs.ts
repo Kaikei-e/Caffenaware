@@ -1,2 +1,5 @@
 
-export type drawType = []
+export type drawType = {
+  "value" : number,
+  "date": string
+}
