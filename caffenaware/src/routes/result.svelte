@@ -39,7 +39,7 @@
 	];
 
 	let jsonObjs = get(resStruct).res;
-	console.log(jsonObjs.length)
+	console.log(jsonObjs.length);
 
 	drawer();
 
@@ -58,12 +58,11 @@
 				};
 
 				dType.push(elem);
-				
 			}
 		}
 
 		console.log(dType.length);
-		 
+
 		await console.log('converted');
 	}
 
@@ -77,32 +76,31 @@
 <main class="h-screen w-screen">
 	<div class="backImage">
 		{#await promise}
-			<p>Start4</p>
 			<p class=" text-center text-white font-bold">Drawing...</p>
 		{:then}
-			<p>Start5</p>
-
-			<LineChart
-				data={dType}
-				options={{
-					title: 'Line (Time Series)',
-					axes: {
-						bottom: {
-							title: 'Caffeine Decay',
-							mapsTo: 'date',
-							scaleType: 'time'
+			<div class="graph bg-gray-50 bg-opacity-50">
+				<LineChart
+					data={dType}
+					options={{
+						title: 'Line (Time Series)',
+						axes: {
+							bottom: {
+								title: 'Caffeine Decay',
+								mapsTo: 'date',
+								scaleType: 'time'
+							},
+							left: {
+								mapsTo: 'value',
+								title: 'Caffeine(mg)',
+								scaleType: 'linear'
+							}
 						},
-						left: {
-							mapsTo: 'value',
-							title: 'Caffeine(mg)',
-							scaleType: 'linear'
-						}
-					},
 
-					curve: 'curveMonotoneX',
-					height: '800px'
-				}}
-			/>
+						curve: 'curveMonotoneX',
+						height: '800px'
+					}}
+				/>
+			</div>
 		{/await}
 	</div>
 
@@ -127,5 +125,10 @@
 		background-size: cover;
 		background-blend-mode: lighten;
 		background-color: rgba(223, 188, 147, 0.3);
+	}
+
+	.graph {
+		justify-content: center;
+		padding: 20px;
 	}
 </style>

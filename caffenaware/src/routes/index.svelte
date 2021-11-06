@@ -11,10 +11,10 @@
 
 	
 	const info1 =
-		'Mode1 calculates the amount of caffeine in mg per 100 ml from the total amount of the drink';
+		'Method1 can calculate only the total amount of caffeine in mg.';
 
-	const info2 = 'Mode2 can calculate only the total amount of caffeine in mg.';
-
+	const info2 = 'Method2 calculates the amount of caffeine in mg per 100 ml from the total amount of the drink';
+	
 	async function onSubmit() {
 		for (let index = 0; index < $drinkForms.length; index++) {
 			const elem = $drinkForms[index];

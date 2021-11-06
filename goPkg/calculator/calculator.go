@@ -10,7 +10,7 @@ func Calculator(formData structs.FormData) structs.TheDecays{
 	var totalCaffeine int
 	var caffeStructs structs.TheDecays
 	
-	if formData.Method == "1" {
+	if formData.Method == "2" {
 		totalCaffeine = int(float64(formData.Caffeine) * float64(formData.Ml) / 100.0)
 
 
