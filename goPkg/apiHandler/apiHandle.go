@@ -16,7 +16,6 @@ import (
 func APIReciever(ctx *gin.Context){
 	var frmDts []structs.FormData
 
-	fmt.Println(ctx.Request.Body)
 	body, err := ioutil.ReadAll(ctx.Request.Body)
 	if err != nil {
 		log.Panicln(err)
@@ -36,6 +35,7 @@ func APIReciever(ctx *gin.Context){
 	var caledList []structs.TheDecay 
 
 	for _, v := range frmDts {
+		fmt.Println(v)
 		caffeStructs := calculator.Calculator(v)
 
 		for _, x := range caffeStructs.Set {

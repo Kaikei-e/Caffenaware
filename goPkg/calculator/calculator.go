@@ -2,6 +2,7 @@ package calculator
 
 import (
 	"Caffenaware/goPkg/structs"
+	"fmt"
 	"time"
 )
 
@@ -10,12 +11,15 @@ func Calculator(formData structs.FormData) structs.TheDecays{
 	var caffeStructs structs.TheDecays
 	
 	if formData.Method == "1" {
-		totalCaffeine = (formData.Caffeine / 100 ) * formData.Ml
+		totalCaffeine = formData.Caffeine * formData.Ml / 100
 
 
 	}else{
 		totalCaffeine = formData.Caffeine
 	}
+
+	fmt.Println("/////////////")
+	fmt.Println(totalCaffeine)
 
 	const Tmax = 1.1333
 	var toTmax float64
