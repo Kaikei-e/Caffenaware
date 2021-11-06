@@ -19,10 +19,28 @@
 
 	});
 
-	let dType: drawType[] = [];
+	let dType = [];
+
+	const testData = [{
+    "group": "Caffeine",
+    "date": "2021-11-07T19:31:00.000",
+    "value": 5.112241110621567
+	},
+	{
+    "group": "Caffeine",
+    "date": "2021-11-07T21:31:00.000",
+    "value": 5.112241110621567
+},{
+    "group": "Caffeine",
+    "date": "2021-11-07T06:31:00.000",
+    "value": 5.112241110621567
+}]
 	
 
 	let jsonObjs = get(resStruct).res;
+
+	drawer()
+
 
 	console.log('start');
 
@@ -30,28 +48,26 @@
 		for (let index = 0; index < jsonObjs.length; index++) {
 			const element = jsonObjs[index];
 
-			dType.push({
-				group: 'Caffeine',
-				date: element['dttm'],
-				value: element['caffeine']
-			});
-
-			if (dType.length == jsonObjs.length) {
-				isConverted = true;
+			let elem = {
+				"group": 'Caffeine',
+				"date": element['dttm'],
+				"value": element['caffeine'],
 			}
+
+			dType.push(elem);
 		}
 
 		await console.log('converted');
-		return dType = dType;
+		//return dType = dType;
 	}
 
+	console.log(dType)
 	console.log('start2');
 
 	///////////////////////////////////////////////////
 	/*
 	 */
 
-	drawer()
 </script>
 
 <main class="h-screen w-screen">
@@ -59,22 +75,22 @@
 		{#await promise}
 			<p>Start4</p>
 			<p class=" text-center text-white font-bold">Drawing...</p>
-		{:then dType}
+		{:then}
 			<p>Start5</p>
 
 			<LineChart
-				data={dType}
+				data={testData}
 				options={{
-					title: 'Line (discrete)',
+					title: 'Line (Time Series)',
 					axes: {
 						bottom: {
 							title: 'Caffeine Decay',
 							mapsTo: 'key',
-							scaleType: 'labels'
+							scaleType: 'time'
 						},
 						left: {
 							mapsTo: 'value',
-							title: 'Conversion rate',
+							title: 'Caffeine(mg)',
 							scaleType: 'linear'
 						}
 					},
@@ -87,131 +103,6 @@
 	</div>
 
 	<!--- 
-
-		<div class="m-5">
-			<LineChart
-				data={[
-					{
-						group: 'Dataset 1',
-						key: 'Qty',
-						value: 34200
-					},
-					{
-						group: 'Dataset 1',
-						key: 'More',
-						value: 23500
-					},
-					{
-						group: 'Dataset 1',
-						key: 'Sold',
-						value: 53100
-					},
-					{
-						group: 'Dataset 1',
-						key: 'Restocking',
-						value: 42300
-					},
-					{
-						group: 'Dataset 1',
-						key: 'Misc',
-						value: 12300
-					},
-					{
-						group: 'Dataset 2',
-						key: 'Qty',
-						value: 34200
-					},
-					{
-						group: 'Dataset 2',
-						key: 'More',
-						value: 53200
-					},
-					{
-						group: 'Dataset 2',
-						key: 'Sold',
-						value: 42300
-					},
-					{
-						group: 'Dataset 2',
-						key: 'Restocking',
-						value: 21400
-					},
-					{
-						group: 'Dataset 2',
-						key: 'Misc',
-						value: 0
-					},
-					{
-						group: 'Dataset 3',
-						key: 'Qty',
-						value: 41200
-					},
-					{
-						group: 'Dataset 3',
-						key: 'More',
-						value: 18400
-					},
-					{
-						group: 'Dataset 3',
-						key: 'Sold',
-						value: 34210
-					},
-					{
-						group: 'Dataset 3',
-						key: 'Restocking',
-						value: 1400
-					},
-					{
-						group: 'Dataset 3',
-						key: 'Misc',
-						value: 42100
-					},
-					{
-						group: 'Dataset 4',
-						key: 'Qty',
-						value: 22000
-					},
-					{
-						group: 'Dataset 4',
-						key: 'More',
-						value: 1200
-					},
-					{
-						group: 'Dataset 4',
-						key: 'Sold',
-						value: 9000
-					},
-					{
-						group: 'Dataset 4',
-						key: 'Restocking',
-						value: 24000,
-						audienceSize: 10
-					},
-					{
-						group: 'Dataset 4',
-						key: 'Misc',
-						value: 3000,
-						audienceSize: 10
-					}
-				]}
-				options={{
-					title: 'Line (discrete)',
-					axes: {
-						bottom: {
-							title: '2019 Annual Sales Figures',
-							mapsTo: 'key',
-							scaleType: 'labels'
-						},
-						left: {
-							mapsTo: 'value',
-							title: 'Conversion rate',
-							scaleType: 'linear'
-						}
-					},
-					height: '400px'
-				}}
-			/>
-		</div>
 
 	--->
 </main>
