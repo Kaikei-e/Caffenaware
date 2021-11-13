@@ -2,8 +2,6 @@
 	import { resStruct } from '$lib/api/apiSender';
 	import { get } from 'svelte/store';
 
-	import '@carbon/charts/styles.min.css';
-	import 'carbon-components/css/carbon-components.min.css';
 	//import "carbon-components-svelte/css/all.css";
 
 	//import 'carbon-components-svelte/css/white.css';
@@ -13,9 +11,13 @@
 	import { onMount } from 'svelte';
 
 	let promise;
+	let components;
+	let style;
 
-	onMount(() => {
+	onMount(async () => {
 		promise = drawer();
+		components = (await import('@carbon/charts/styles.min.css')).default;
+		style = (await import('carbon-components/css/carbon-components.min.css')).default;
 	});
 
 	let dType: drawType[] = [];
@@ -65,6 +67,9 @@
 
 		await console.log('converted');
 	}
+
+	console.log('StartDate: ' + dType[0].date);
+	console.log('EndDate: ' + dType[dType.length -1].date);
 
 	console.log('start2');
 
