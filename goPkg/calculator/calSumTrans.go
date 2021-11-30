@@ -66,6 +66,5 @@ func CalSumTrans(caffeList []structs.TheDecay) []structs.TheDecay {
 		}
 	*/
 
-
 	return summedList
 }

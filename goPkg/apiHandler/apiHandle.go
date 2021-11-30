@@ -11,9 +11,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-
-
-func APIReciever(ctx *gin.Context){
+func APIReciever(ctx *gin.Context) {
 	var frmDts []structs.FormData
 
 	body, err := ioutil.ReadAll(ctx.Request.Body)
@@ -21,18 +19,16 @@ func APIReciever(ctx *gin.Context){
 		log.Panicln(err)
 	}
 
-
-	if err := json.Unmarshal(body, &frmDts); err != nil{
+	if err := json.Unmarshal(body, &frmDts); err != nil {
 		log.Panicln(err)
 
 	}
-
 
 	fmt.Println(frmDts)
 
 	calculator.FormSorter(frmDts)
 
-	var caledList []structs.TheDecay 
+	var caledList []structs.TheDecay
 
 	for _, v := range frmDts {
 		fmt.Println(v)
@@ -55,7 +51,6 @@ func APIReciever(ctx *gin.Context){
 
 	var res []structs.ResStruct
 
-
 	for _, v := range summedList {
 		var rInit structs.ResStruct
 		rInit.Timeline = v.Timeline.Format("2006-01-02T15:04:05.000")
@@ -65,14 +60,13 @@ func APIReciever(ctx *gin.Context){
 	}
 
 	for i, v := range summedList {
-		
-		if i % 300 == 0 {
-			fmt.Println(v)		
-			
-		}
-			
-	}
 
+		if i%300 == 0 {
+			fmt.Println(v)
+
+		}
+
+	}
 
 	ctx.JSON(200, res)
 

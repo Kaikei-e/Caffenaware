@@ -16,18 +16,18 @@ import (
 
 var st embed.FS
 
-func main(){
+func main() {
 
 	public, err := fs.Sub(st, "sBuild/public")
 	if err != nil {
 		panic(err)
 	}
 	/*
-	http.Handle("/", http.FileServer(http.FS(public)))
+		http.Handle("/", http.FileServer(http.FS(public)))
 
-	http.Handle("api/calculate")
+		http.Handle("api/calculate")
 
-	log.Fatal(http.ListenAndServe(":9000", nil))
+		log.Fatal(http.ListenAndServe(":9000", nil))
 
 	*/
 	router := gin.Default()
@@ -43,9 +43,9 @@ func main(){
 		api.POST("/calculate", apihandler.APIReciever)
 	}
 
-
-
-	router.Run(":9000")
-	
+	errRun := router.Run(":9000")
+	if errRun != nil {
+		return
+	}
 
 }

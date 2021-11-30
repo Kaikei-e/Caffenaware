@@ -5,7 +5,7 @@ import (
 	"sort"
 )
 
-func FormSorter(forms []structs.FormData){
+func FormSorter(forms []structs.FormData) {
 	sort.Slice(forms, func(i, j int) bool {
 		return forms[i].Datetime.Before(forms[j].Datetime)
 	})
