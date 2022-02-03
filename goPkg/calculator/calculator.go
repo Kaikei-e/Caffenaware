@@ -71,5 +71,7 @@ func Calculator(formData structs.FormData) structs.TheDecays {
 
 	}
 
+	//fmt.Println(len(caffeStructs.Set))
+
 	return caffeStructs
 }
