@@ -2,7 +2,6 @@ package calculator
 
 import (
 	"Caffenaware/goPkg/structs"
-	"reflect"
 	"testing"
 	"time"
 )
@@ -18,25 +17,33 @@ func TestCalculator(t *testing.T) {
 		args args
 		want int
 	}{
-		{"passCase", args{formData: structs.FormData(struct {
+		{"method1Case", args{formData: structs.FormData(struct {
 			Method   string
 			Caffeine int
 			Datetime time.Time
 			Ml       int
 		}{Method: "1", Caffeine: 100, Datetime: time.Now(), Ml: 0})}, correctLength},
-		{"errCase", args{formData: structs.FormData(struct {
+		{"method2Case", args{formData: structs.FormData(struct {
 			Method   string
 			Caffeine int
 			Datetime time.Time
 			Ml       int
-		}{Method: "1", Caffeine: 100, Datetime: time.Now(), Ml: 0})}, 0},
-		// TODO: Add test cases.
+		}{Method: "2", Caffeine: 100, Datetime: time.Now(), Ml: 100})}, correctLength},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := Calculator(tt.args.formData); !reflect.DeepEqual(len(got.Set), tt.want) {
-				t.Errorf("Calculator() = %v, want %v", got, tt.want)
+			if got := Calculator(tt.args.formData); len(got.Set) != tt.want {
+				t.Errorf("Calculator() = %v, want %v", len(got.Set), tt.want)
 			}
 		})
 	}
+}
+
+func TestCalculatorPanic(t *testing.T) {
+	defer func() {
+		recover()
+	}()
+	Calculator(structs.FormData{"1", 0, time.Now(), 0})
+
+	t.Errorf("Didn't panic!!")
 }
