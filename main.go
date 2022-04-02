@@ -10,7 +10,7 @@ import (
 )
 
 //go:embed sBuild/*
-//go:embed sBuild/public/_app/*
+//go:embed sBuild/_app/*
 //go:embed sBuild/public/_app/assets/pages/__layout.svelte-ecf3250f.css
 //go:embed sBuild/public/_app/pages/__layout.svelte-9572b512.js
 
