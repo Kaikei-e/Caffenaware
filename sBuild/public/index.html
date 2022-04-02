@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+		
+
+		
+
+		<link rel="modulepreload" href="/_app/start-c635b4de.js">
+		<link rel="modulepreload" href="/_app/chunks/vendor-1ac694aa.js">
+		<link rel="modulepreload" href="/_app/chunks/preload-helper-ec9aa979.js">
+		<link rel="modulepreload" href="/_app/chunks/singletons-12a22614.js">
+		<link rel="modulepreload" href="/_app/pages/__layout.svelte-9572b512.js">
+		<link rel="modulepreload" href="/_app/pages/index.svelte-1bd5b80d.js">
+		<link rel="modulepreload" href="/_app/chunks/apiSender-018987e7.js">
+		<link rel="stylesheet" href="/_app/assets/start-464e9d0a.css">
+		<link rel="stylesheet" href="/_app/assets/pages/__layout.svelte-ecf3250f.css">
+		<link rel="stylesheet" href="/_app/assets/styles.min-876627f3.css">
+		<link rel="stylesheet" href="/_app/assets/carbon-components.min-9a1aabf0.css">
+		<link rel="stylesheet" href="/_app/assets/pages/index.svelte-eb0cec42.css">
+
+		<script type="module">
+			import { start } from "/_app/start-c635b4de.js";
+			start({
+				target: document.body,
+				paths: {"base":"","assets":""},
+				session: {},
+				host: location.host,
+				route: true,
+				spa: false,
+				trailing_slash: "never",
+				hydrate: {
+					status: 200,
+					error: null,
+					nodes: [
+						import("/_app/pages/__layout.svelte-9572b512.js"),
+						import("/_app/pages/index.svelte-1bd5b80d.js")
+					],
+					page: {
+						host: location.host, // TODO this is redundant
+						path: "\u002F",
+						query: new URLSearchParams(""),
+						params: {}
+					}
+				}
+			});
+		</script>
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<main class="svelte-18bhp9v"><div class="backImage svelte-18bhp9v"></div>
+
+	<div class="inputForm svelte-18bhp9v"><div class="flex flex-col justify-center"><div class="countNum text-xl2 text-gray-100 svelte-18bhp9v">How many bottles did you drink? : 1</div>
+			
+			<div><div class="flex flex-wrap justify-center items-baseline text-gray-700"><button class="countUp bg-primary rounded-lg text-center px-4 py-2 m-5 shadow-md svelte-1jwc1he">+1 drink :)
+		</button>
+		<button class="countUp bg-primary rounded-lg text-center px-4 py-2 m-5 shadow-md svelte-1jwc1he">-1 drink :)
+		</button></div>
+	<br>
+</div>
+			<p class="text-xl text-gray-200 font-bold">Method1 can calculate only the total amount of caffeine in mg.</p>
+			<p class="text-xl text-gray-200 font-bold">Method2 calculates the amount of caffeine in mg per 100 ml from the total amount of the drink</p></div></div>
+	<form method="POST" class="text-gray-200 font-medium"><ul class="svelte-18bhp9v">
+	<div><p>Loading....</p></div>
+
+			<button type="button" class="submit px-4 py-2 bg-primary border-white rounded-lg text-gray-700 svelte-18bhp9v" value="Submit">Submit</button></ul></form>
+
+	<br>
+
+	
+</main>
+
+
+
+			
+		</div>
+	</body>
+</html>

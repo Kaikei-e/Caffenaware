@@ -9,9 +9,10 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//go:embed sBuild/public/*
-//go:embed sBuild/public/_app/pages/__layout.svelte-a8d315f4.js
+//go:embed sBuild/*
+//go:embed sBuild/public/_app/*
 //go:embed sBuild/public/_app/assets/pages/__layout.svelte-ecf3250f.css
+//go:embed sBuild/public/_app/pages/__layout.svelte-9572b512.js
 
 var st embed.FS
 
